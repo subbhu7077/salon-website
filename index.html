@@ -4,494 +4,1026 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Royal Glow | Premium Beauty & Grooming</title>
+<title>Royal Glow | Beauty & Grooming</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --pink:#ff1493;
+  --pink2:#ff4db8;
+  --purple:#8a2be2;
+  --dark:#08040d;
+  --dark2:#120617;
+  --white:#ffffff;
+  --muted:#bdb5c5;
+  --green:#25d366;
+}
 
-html{scroll-behavior:smooth}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-font-family:Arial,sans-serif;
-background:#08030d;
-color:#fff;
-overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(255,0,140,.18),transparent 25%),
+    radial-gradient(circle at 85% 35%,rgba(140,0,255,.14),transparent 28%),
+    #07030b;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* LOADER */
-#preloader{
-position:fixed;
-inset:0;
-background:#08030d;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:99999;
-transition:.6s;
+/* ================= LOADER ================= */
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:#08030d;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.6s;
 }
 
-.loader{text-align:center}
+.loader-box{
+  text-align:center;
+}
+
 .loader-crown{
-font-size:65px;
-animation:pulse 1.2s infinite;
+  font-size:70px;
+  animation:pulse 1s infinite;
+  filter:drop-shadow(0 0 20px var(--pink));
 }
-.loader-name{
-color:#ff3ca6;
-letter-spacing:5px;
-margin-top:10px;
+
+.loader-text{
+  margin-top:12px;
+  letter-spacing:8px;
+  color:var(--pink2);
 }
 
 @keyframes pulse{
-50%{
-transform:scale(1.15);
-filter:drop-shadow(0 0 25px #ff008c);
-}
-}
-
-/* BACKGROUND */
-.orb{
-position:fixed;
-border-radius:50%;
-filter:blur(120px);
-opacity:.18;
-z-index:-1;
+  50%{
+    transform:scale(1.15);
+  }
 }
 
-.orb1{
-width:400px;height:400px;
-background:#ff008c;
-top:20%;left:-200px;
-}
+/* ================= NAVBAR ================= */
 
-.orb2{
-width:400px;height:400px;
-background:#7200ff;
-bottom:10%;right:-200px;
-}
-
-/* NAV */
 nav{
-position:sticky;
-top:0;
-z-index:1000;
-background:rgba(8,3,13,.92);
-backdrop-filter:blur(15px);
-padding:16px 7%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-border-bottom:1px solid rgba(255,0,140,.2);
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(94%,1200px);
+  min-height:68px;
+  z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 22px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:18px;
+  background:rgba(10,4,15,.82);
+  backdrop-filter:blur(20px);
+  box-shadow:0 0 30px rgba(255,0,140,.12);
 }
 
 .logo{
-font-size:24px;
-font-weight:bold;
-color:#ff4fab;
-text-shadow:0 0 15px #ff008c;
+  color:#fff;
+  font-size:22px;
+  font-weight:bold;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.logo span{
+  color:var(--pink);
 }
 
 .nav-links{
-display:flex;
-gap:18px;
+  display:flex;
+  gap:28px;
 }
 
 .nav-links a{
-color:white;
-text-decoration:none;
-font-size:14px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
 }
 
-.book-top{
-background:#ff008c;
-padding:10px 18px;
-border-radius:25px;
-color:#fff;
-text-decoration:none;
-box-shadow:0 0 20px #ff008c;
+.nav-links a:hover{
+  color:var(--pink2);
+  text-shadow:0 0 12px var(--pink);
 }
 
-/* HERO */
+.nav-buttons{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.book-btn{
+  background:linear-gradient(135deg,#ff008c,#ff4db8);
+  color:white;
+  padding:13px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 25px rgba(255,0,140,.75);
+}
+
+.menu-btn{
+  display:none;
+  background:none;
+  border:none;
+  color:white;
+  font-size:26px;
+}
+
+/* ================= HERO ================= */
+
 .hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-padding:70px 7%;
+  min-height:100vh;
+  padding:130px 7% 70px;
+  position:relative;
+  display:flex;
+  align-items:center;
 }
 
-.hero-wrap{
-max-width:1150px;
-margin:auto;
-width:100%;
-display:flex;
-align-items:center;
-gap:50px;
+.hero-bg{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
 }
 
-.hero-text{flex:1}
-
-.tag{
-color:#ff4fab;
-letter-spacing:3px;
-margin-bottom:15px;
+.glow{
+  position:absolute;
+  width:450px;
+  height:450px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:.25;
 }
 
-.hero h1{
-font-size:70px;
-line-height:1.05;
+.g1{
+  background:#ff008c;
+  left:-200px;
+  top:200px;
 }
 
-.hero h1 span{
-color:#ff2a9b;
-text-shadow:0 0 15px #ff008c,0 0 45px #ff008c;
+.g2{
+  background:#7a00ff;
+  right:-200px;
+  top:100px;
 }
 
-.hero p{
-margin:25px 0;
-color:#d5cbd5;
-line-height:1.8;
-font-size:17px;
+.hero-container{
+  width:min(1200px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:50px;
+  align-items:center;
+  position:relative;
+  z-index:2;
 }
 
-.buttons{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
+.eyebrow{
+  color:#ff74c7;
+  letter-spacing:5px;
+  font-size:13px;
+  margin-bottom:20px;
 }
 
-.btn{
-padding:15px 24px;
-border-radius:30px;
-text-decoration:none;
-display:inline-block;
-transition:.3s;
+.hero-title{
+  font-size:clamp(55px,8vw,105px);
+  line-height:.86;
+  font-weight:900;
+  text-transform:uppercase;
 }
 
-.pink{
-color:white;
-background:linear-gradient(135deg,#ff008c,#ff5fb7);
-box-shadow:0 0 25px #ff008c;
+.hero-title .beauty{
+  display:block;
+  color:#ff52b4;
+  text-shadow:
+    2px 3px 0 #720038,
+    0 0 15px #ff1493,
+    0 0 40px #ff1493,
+    0 0 80px #a000ff;
+  animation:titleFloat 3s ease-in-out infinite;
 }
 
-.dark{
-color:white;
-border:1px solid #777;
+.hero-title .small-line{
+  display:block;
+  font-size:.32em;
+  color:#ffd6ed;
+  margin:12px 0;
+  font-style:italic;
+  text-transform:none;
 }
 
-.btn:hover{transform:translateY(-5px)}
-
-/* PROFILE */
-.photo-side{
-flex:1;
-display:flex;
-justify-content:center;
-position:relative;
+.hero-title .confidence{
+  display:block;
+  color:#f4ecff;
+  text-shadow:
+    3px 3px 0 #410026,
+    0 0 15px #ff1493,
+    0 0 45px #8a2be2;
+  animation:titleGlow 2s infinite alternate;
 }
 
-.photo-ring{
-position:absolute;
-width:350px;
-height:350px;
-border-radius:50%;
-border:2px solid #ff008c;
-box-shadow:0 0 30px #ff008c,0 0 80px #ff008c;
-animation:spin 10s linear infinite;
+@keyframes titleFloat{
+  50%{
+    transform:translateY(-8px) rotate(-1deg);
+  }
 }
 
-@keyframes spin{
-to{transform:rotate(360deg)}
+@keyframes titleGlow{
+  from{
+    filter:brightness(1);
+  }
+  to{
+    filter:brightness(1.35);
+  }
 }
 
-.profile{
-width:320px;
-height:430px;
-border-radius:30px;
-padding:8px;
-background:linear-gradient(135deg,#ff008c,#31001e);
-z-index:2;
-box-shadow:0 0 40px #ff008c;
-animation:float 4s ease-in-out infinite;
+.hero-description{
+  color:#d8d0dd;
+  line-height:1.8;
+  max-width:580px;
+  margin:28px 0;
+  font-size:16px;
 }
 
-.profile img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:24px;
+.hero-actions{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
-@keyframes float{
-50%{transform:translateY(-15px)}
+.primary-btn,
+.secondary-btn{
+  padding:16px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:.3s;
+  display:inline-block;
 }
 
-/* SECTIONS */
-section{
-padding:90px 7%;
+.primary-btn{
+  color:#fff;
+  background:linear-gradient(135deg,#ff008c,#ff52b4);
+  box-shadow:0 0 30px rgba(255,0,140,.7);
 }
 
-.title{
-text-align:center;
-font-size:40px;
-margin-bottom:50px;
+.primary-btn:hover{
+  transform:translateY(-4px) scale(1.03);
 }
 
-.title span{
-color:#ff2a9b;
-text-shadow:0 0 20px #ff008c;
+.secondary-btn{
+  color:white;
+  border:1px solid rgba(255,255,255,.35);
 }
 
-/* SERVICES */
-.grid{
-max-width:1100px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
+.secondary-btn:hover{
+  border-color:var(--pink);
+  box-shadow:0 0 20px rgba(255,0,140,.4);
 }
 
-.card{
-padding:30px 20px;
-border-radius:25px;
-text-align:center;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,0,140,.25);
-transition:.4s;
+/* HERO PHOTO */
+
+.hero-photo-area{
+  position:relative;
+  min-height:550px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 30px rgba(255,0,140,.45);
-border-color:#ff008c;
+.neon-ring{
+  position:absolute;
+  width:440px;
+  height:440px;
+  border-radius:50%;
+  border:3px solid #ff1493;
+  box-shadow:
+    0 0 20px #ff1493,
+    inset 0 0 30px rgba(255,0,140,.3);
+  animation:ringRotate 8s linear infinite;
 }
 
-.icon{font-size:40px;margin-bottom:12px}
-
-.card p{
-color:#cfc5cf;
-margin:12px 0;
+@keyframes ringRotate{
+  to{
+    transform:rotate(360deg);
+  }
 }
 
-.price{
-font-size:24px;
-color:#ff4fab;
-font-weight:bold;
+.photo-card{
+  width:340px;
+  height:470px;
+  border-radius:35px;
+  padding:8px;
+  background:linear-gradient(135deg,#ff008c,#480029,#ff008c);
+  box-shadow:
+    0 0 25px #ff1493,
+    0 0 80px rgba(255,0,140,.5);
+  transform:rotate(3deg);
+  animation:photoFloat 4s ease-in-out infinite;
+  position:relative;
+  z-index:2;
 }
 
-/* STATS */
-.stats{
-max-width:900px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+.photo-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:28px;
+}
+
+@keyframes photoFloat{
+  50%{
+    transform:translateY(-18px) rotate(-2deg);
+  }
+}
+
+.photo-label{
+  position:absolute;
+  right:-20px;
+  bottom:35px;
+  background:#0b0610;
+  border:1px solid var(--pink);
+  padding:12px 18px;
+  border-radius:18px;
+  z-index:5;
+  box-shadow:0 0 20px rgba(255,0,140,.5);
+}
+
+/* ================= QUICK SERVICES ================= */
+
+.quick-services{
+  width:min(1150px,90%);
+  margin:-35px auto 0;
+  position:relative;
+  z-index:10;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.quick-item{
+  background:rgba(15,6,20,.9);
+  border:1px solid rgba(255,0,140,.4);
+  padding:15px;
+  text-align:center;
+  border-radius:15px;
+  color:#fff;
+  transition:.3s;
+}
+
+.quick-item:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(255,0,140,.5);
+}
+
+/* ================= STATS ================= */
+
+.stats-section{
+  padding:50px 7%;
+}
+
+.stats-grid{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  border:1px solid rgba(255,0,140,.5);
+  border-radius:25px;
+  overflow:hidden;
+  background:rgba(255,255,255,.025);
 }
 
 .stat{
-padding:30px;
-text-align:center;
-border-radius:20px;
-background:rgba(255,0,140,.08);
-border:1px solid rgba(255,0,140,.25);
+  text-align:center;
+  padding:25px 15px;
+  border-right:1px solid rgba(255,255,255,.12);
+}
+
+.stat:last-child{
+  border:none;
 }
 
 .stat h3{
-font-size:35px;
-color:#ff3ca6;
+  font-size:28px;
+  color:#fff;
+  text-shadow:0 0 15px var(--pink);
 }
 
-/* GALLERY */
-.gallery{
-max-width:1000px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
+.stat p{
+  color:#c7bfcb;
+  margin-top:8px;
+  font-size:13px;
 }
 
-.gallery-item{
-height:220px;
-border-radius:20px;
-overflow:hidden;
-background:linear-gradient(135deg,#2c071f,#120615);
-border:1px solid rgba(255,0,140,.3);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:45px;
-transition:.3s;
+/* ================= GENERAL ================= */
+
+section{
+  padding:85px 7%;
 }
 
-.gallery-item:hover{
-transform:scale(1.04);
-box-shadow:0 0 30px #ff008c;
+.section-head{
+  text-align:center;
+  margin-bottom:40px;
 }
 
-/* ABOUT */
-.about{
-max-width:850px;
-margin:auto;
-padding:45px;
-text-align:center;
-line-height:1.9;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,0,140,.25);
-border-radius:30px;
+.section-small{
+  color:#ff63bd;
+  letter-spacing:4px;
+  font-size:12px;
 }
 
-/* REVIEWS */
-.review{
-max-width:900px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+.section-title{
+  margin-top:10px;
+  font-size:clamp(32px,5vw,55px);
+}
+
+.section-title span{
+  color:#ff4db8;
+  text-shadow:0 0 18px rgba(255,0,140,.6);
+}
+
+.section-sub{
+  color:#bbb1c1;
+  margin-top:12px;
+}
+
+/* ================= SERVICES ================= */
+
+.services-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.service-card{
+  position:relative;
+  overflow:hidden;
+  padding:28px;
+  min-height:230px;
+  border-radius:24px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid rgba(255,0,140,.3);
+  transition:.4s;
+}
+
+.service-card:hover{
+  transform:translateY(-10px) scale(1.02);
+  border-color:#ff1493;
+  box-shadow:0 15px 45px rgba(255,0,140,.25);
+}
+
+.service-icon{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:rgba(255,0,140,.12);
+  border:1px solid var(--pink);
+  font-size:27px;
+  margin-bottom:18px;
+}
+
+.service-card h3{
+  font-size:22px;
+}
+
+.service-card p{
+  color:#bfb5c5;
+  line-height:1.7;
+  margin:12px 0;
+}
+
+.service-price{
+  color:#ff64bd;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* ================= OFFER ================= */
+
+.offer{
+  max-width:1200px;
+  margin:20px auto;
+  min-height:210px;
+  border-radius:28px;
+  padding:40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  border:1px solid rgba(255,0,140,.5);
+  background:
+    radial-gradient(circle at 70% 50%,rgba(255,0,140,.35),transparent 30%),
+    linear-gradient(135deg,#150512,#08040d);
+  box-shadow:0 0 35px rgba(255,0,140,.12);
+}
+
+.offer h2{
+  font-size:42px;
+}
+
+.offer h2 span{
+  color:#ff4db8;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+}
+
+.gallery-card{
+  height:220px;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  border:2px solid rgba(255,0,140,.45);
+  background:linear-gradient(145deg,#260819,#08040d);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.gallery-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 0 25px rgba(255,0,140,.55);
+}
+
+.gallery-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.gallery-placeholder{
+  height:100%;
+  display:grid;
+  place-items:center;
+  font-size:55px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.about-text p{
+  color:#c7becd;
+  line-height:1.9;
+  margin:18px 0;
+}
+
+.features-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.feature{
+  padding:20px;
+  border-radius:18px;
+  border:1px solid rgba(255,0,140,.3);
+  background:rgba(255,255,255,.03);
+}
+
+.feature h4{
+  color:#ff63bd;
+  margin-bottom:8px;
+}
+
+.about-photo{
+  display:flex;
+  justify-content:center;
+}
+
+.about-photo img{
+  width:300px;
+  height:380px;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid var(--pink);
+  box-shadow:0 0 35px rgba(255,0,140,.7);
+}
+
+/* ================= TEAM ================= */
+
+.team-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:20px;
+}
+
+.team-card{
+  text-align:center;
+}
+
+.team-avatar{
+  width:115px;
+  height:115px;
+  border-radius:50%;
+  margin:auto;
+  display:grid;
+  place-items:center;
+  font-size:45px;
+  border:3px solid #ff1493;
+  background:radial-gradient(circle,#ff5ab7,#260818);
+  box-shadow:0 0 20px rgba(255,0,140,.5);
+}
+
+.team-card h4{
+  margin-top:13px;
+}
+
+.team-card p{
+  color:#aaa;
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* ================= REVIEWS ================= */
+
+.reviews-grid{
+  max-width:1150px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .review-card{
-padding:25px;
-border-radius:20px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,0,140,.2);
+  padding:25px;
+  border:1px solid rgba(255,0,140,.4);
+  border-radius:20px;
+  background:rgba(255,255,255,.035);
 }
 
-.stars{color:#ffd23f;margin-bottom:10px}
-
-/* CONTACT */
-.contact-box{
-max-width:650px;
-margin:auto;
-padding:45px;
-text-align:center;
-border-radius:30px;
-background:linear-gradient(135deg,rgba(255,0,140,.18),rgba(80,0,100,.2));
-border:1px solid #ff008c;
-box-shadow:0 0 40px rgba(255,0,140,.2);
+.stars{
+  color:#ffd700;
+  margin-bottom:15px;
 }
 
-.phone{
-font-size:28px;
-color:#ff4fab;
-margin:20px;
+.review-card p{
+  color:#c8becd;
+  line-height:1.7;
 }
 
-.contact-buttons{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
+.review-name{
+  color:#ff63bd;
+  margin-top:15px;
 }
 
-/* WHATSAPP */
-.whatsapp{
-position:fixed;
-right:20px;
-bottom:25px;
-width:65px;
-height:65px;
-border-radius:50%;
-background:#25d366;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px;
-text-decoration:none;
-box-shadow:0 0 25px #25d366;
-z-index:999;
-animation:wp 2s infinite;
+/* ================= BOOKING ================= */
+
+.booking-box{
+  max-width:1200px;
+  margin:auto;
+  padding:30px;
+  border-radius:30px;
+  border:1px solid rgba(255,0,140,.45);
+  background:
+    linear-gradient(135deg,rgba(255,0,140,.12),rgba(255,255,255,.02));
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:30px;
 }
 
-@keyframes wp{
-50%{transform:scale(1.12)}
+.booking-info h2{
+  font-size:38px;
 }
+
+.booking-info h2 span{
+  color:#ff4db8;
+}
+
+.booking-info p{
+  color:#c4bbc9;
+  line-height:1.8;
+  margin-top:15px;
+}
+
+.booking-form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:#0d0811;
+  color:white;
+  outline:none;
+}
+
+.booking-form textarea{
+  grid-column:1/-1;
+  min-height:100px;
+  resize:vertical;
+}
+
+.booking-form button{
+  grid-column:1/-1;
+  border:none;
+  cursor:pointer;
+  padding:17px;
+  border-radius:30px;
+  color:white;
+  font-weight:bold;
+  background:linear-gradient(135deg,#ff008c,#ff4db8);
+  box-shadow:0 0 25px rgba(255,0,140,.55);
+}
+
+/* ================= CONTACT ================= */
+
+.contact-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.contact-card{
+  padding:28px;
+  border-right:1px solid rgba(255,255,255,.12);
+}
+
+.contact-card h3{
+  margin-bottom:15px;
+}
+
+.contact-card p{
+  color:#bbb1c1;
+  line-height:1.8;
+}
+
+.contact-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.call-btn,
+.whatsapp-btn{
+  padding:14px 20px;
+  border-radius:25px;
+  text-decoration:none;
+  color:white;
+}
+
+.call-btn{
+  border:1px solid var(--pink);
+  box-shadow:0 0 18px rgba(255,0,140,.4);
+}
+
+.whatsapp-btn{
+  background:#25d366;
+  box-shadow:0 0 20px rgba(37,211,102,.5);
+}
+
+/* ================= FOOTER ================= */
 
 footer{
-text-align:center;
-padding:30px;
-color:#888;
-border-top:1px solid #222;
+  padding:35px 7%;
+  border-top:1px solid rgba(255,255,255,.1);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  color:#aaa;
 }
 
-/* MOBILE */
-@media(max-width:800px){
+/* FLOAT BUTTONS */
 
-nav{padding:15px 20px}
-
-.nav-links{display:none}
-
-.hero{
-padding:60px 20px;
+.whatsapp-float{
+  position:fixed;
+  right:22px;
+  bottom:25px;
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+  background:#25d366;
+  color:white;
+  font-size:30px;
+  z-index:998;
+  box-shadow:0 0 25px rgba(37,211,102,.7);
+  animation:floatButton 2s infinite;
 }
 
-.hero-wrap{
-flex-direction:column-reverse;
-text-align:center;
+.top-btn{
+  position:fixed;
+  right:25px;
+  bottom:105px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:none;
+  place-items:center;
+  background:#ff1493;
+  color:white;
+  text-decoration:none;
+  z-index:998;
 }
 
-.hero h1{
-font-size:45px;
+@keyframes floatButton{
+  50%{
+    transform:translateY(-8px) scale(1.06);
+  }
 }
 
-.buttons{
-justify-content:center;
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  nav{
+    top:8px;
+    width:96%;
+  }
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    padding:20px;
+    background:#100815;
+    flex-direction:column;
+    border-radius:18px;
+    border:1px solid rgba(255,0,140,.3);
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-buttons .book-btn{
+    display:none;
+  }
+
+  .hero{
+    padding:115px 20px 50px;
+  }
+
+  .hero-container{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .hero-description{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .hero-actions{
+    justify-content:center;
+  }
+
+  .hero-photo-area{
+    min-height:480px;
+  }
+
+  .photo-card{
+    width:270px;
+    height:370px;
+  }
+
+  .neon-ring{
+    width:320px;
+    height:320px;
+  }
+
+  .quick-services{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat{
+    border-bottom:1px solid rgba(255,255,255,.1);
+  }
+
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .offer{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .gallery-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .team-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .reviews-grid{
+    grid-template-columns:1fr;
+  }
+
+  .booking-box{
+    grid-template-columns:1fr;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  section{
+    padding:65px 20px;
+  }
 }
 
-.profile{
-width:270px;
-height:360px;
+/* SCROLL ANIMATION */
+
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:.8s;
 }
 
-.photo-ring{
-width:280px;
-height:280px;
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-section{
-padding:70px 20px;
-}
-
-.title{
-font-size:32px;
-}
-
-.grid{
-grid-template-columns:1fr;
-}
-
-.stats{
-grid-template-columns:1fr;
-}
-
-.gallery{
-grid-template-columns:1fr 1fr;
-}
-
-.review{
-grid-template-columns:1fr;
-}
-
-.about{
-padding:30px 20px;
-}
-
-}
 </style>
 </head>
 
 <body>
 
-<div id="preloader">
-<div class="loader">
-<div class="loader-crown">👑</div>
-<div class="loader-name">ROYAL GLOW</div>
-</div>
+<!-- LOADER -->
+
+<div id="loader">
+  <div class="loader-box">
+    <div class="loader-crown">👑</div>
+    <div class="loader-text">ROYAL GLOW</div>
+  </div>
 </div>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+<!-- NAVBAR -->
 
 <nav>
-<div class="logo">👑 Royal Glow</div>
 
-<div class="nav-links">
+<a href="#home" class="logo">
+👑 Royal <span>Glow</span>
+</a>
+
+<div class="nav-links" id="navLinks">
 <a href="#home">Home</a>
 <a href="#services">Services</a>
 <a href="#gallery">Gallery</a>
@@ -500,34 +1032,50 @@ padding:30px 20px;
 <a href="#contact">Contact</a>
 </div>
 
-<a class="book-top" href="#contact">Book Now</a>
+<div class="nav-buttons">
+<a href="#booking" class="book-btn">Book Now</a>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+</div>
+
 </nav>
+
+<!-- HERO -->
 
 <section class="hero" id="home">
 
-<div class="hero-wrap">
+<div class="hero-bg">
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+</div>
 
-<div class="hero-text">
+<div class="hero-container">
 
-<div class="tag">✨ PREMIUM BEAUTY EXPERIENCE</div>
+<div class="hero-content">
 
-<h1>
-BEAUTY<br>
-IS <span>CONFIDENCE</span>
+<div class="eyebrow">✨ PREMIUM BEAUTY EXPERIENCE</div>
+
+<h1 class="hero-title">
+
+<span class="beauty">BEAUTY</span>
+
+<span class="small-line">is a form of</span>
+
+<span class="confidence">CONFIDENCE</span>
+
 </h1>
 
-<p>
+<p class="hero-description">
 Professional hair, beauty and grooming services designed
-to help you look stylish and feel confident.
+to help you look stylish, feel confident and enjoy a premium experience.
 </p>
 
-<div class="buttons">
+<div class="hero-actions">
 
-<a href="#contact" class="btn pink">
+<a href="#booking" class="primary-btn">
 📅 Book Appointment
 </a>
 
-<a href="#services" class="btn dark">
+<a href="#services" class="secondary-btn">
 Explore Services →
 </a>
 
@@ -535,234 +1083,162 @@ Explore Services →
 
 </div>
 
-<div class="photo-side">
+<div class="hero-photo-area">
 
-<div class="photo-ring"></div>
+<div class="neon-ring"></div>
 
-<div class="profile">
+<div class="photo-card">
 <img src="IMG_2100.jpg" alt="Royal Glow">
 </div>
 
+<div class="photo-label">
+👑 ROYAL GLOW
 </div>
 
-</div>
-</section>
-
-<section id="services">
-
-<h2 class="title">
-Our <span>Services</span>
-</h2>
-
-<div class="grid">
-
-<div class="card">
-<div class="icon">💇</div>
-<h3>Hair Styling</h3>
-<p>Professional haircut and styling.</p>
-<div class="price">₹299</div>
-</div>
-
-<div class="card">
-<div class="icon">✨</div>
-<h3>Beauty Care</h3>
-<p>Premium beauty treatment.</p>
-<div class="price">₹499</div>
-</div>
-
-<div class="card">
-<div class="icon">👑</div>
-<h3>Premium Grooming</h3>
-<p>Complete grooming experience.</p>
-<div class="price">₹699</div>
-</div>
-
-<div class="card">
-<div class="icon">💆</div>
-<h3>Facial Care</h3>
-<p>Fresh and glowing skin treatment.</p>
-<div class="price">₹599</div>
-</div>
-
-<div class="card">
-<div class="icon">✂️</div>
-<h3>Hair Treatment</h3>
-<p>Premium hair care service.</p>
-<div class="price">₹799</div>
-</div>
-
-<div class="card">
-<div class="icon">🌟</div>
-<h3>Royal Package</h3>
-<p>Complete premium experience.</p>
-<div class="price">₹999</div>
 </div>
 
 </div>
 
 </section>
 
-<section>
+<!-- QUICK OPTIONS -->
 
-<h2 class="title">
-Why Choose <span>Us?</span>
-</h2>
+<div class="quick-services">
 
-<div class="stats">
+<div class="quick-item">✂️ Hair</div>
+<div class="quick-item">✨ Beauty</div>
+<div class="quick-item">👑 Grooming</div>
+<div class="quick-item">💆 Self Care</div>
+
+</div>
+
+<!-- STATS -->
+
+<section class="stats-section">
+
+<div class="stats-grid reveal">
 
 <div class="stat">
-<h3>500+</h3>
+<h3 class="counter" data-target="100">0</h3>
 <p>Happy Clients</p>
 </div>
 
 <div class="stat">
-<h3>5★</h3>
-<p>Premium Service</p>
+<h3 class="counter" data-target="5">0</h3>
+<p>Years Experience</p>
+</div>
+
+<div class="stat">
+<h3 class="counter" data-target="20">0</h3>
+<p>Beauty Experts</p>
+</div>
+
+<div class="stat">
+<h3>4.9⭐</h3>
+<p>Customer Rating</p>
 </div>
 
 <div class="stat">
 <h3>100%</h3>
-<p>Customer Care</p>
+<p>Satisfaction</p>
 </div>
 
 </div>
 
 </section>
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="section-head reveal">
+
+<div class="section-small">✦ OUR SERVICES</div>
+
+<h2 class="section-title">
+Beauty Care For <span>Everyone</span>
+</h2>
+
+<p class="section-sub">
+Premium salon and grooming services for your best look.
+</p>
+
+</div>
+
+<div class="services-grid">
+
+<div class="service-card reveal">
+<div class="service-icon">💇</div>
+<h3>Hair Cut & Styling</h3>
+<p>Modern haircut and premium styling for your personality.</p>
+<div class="service-price">From ₹299</div>
+</div>
+
+<div class="service-card reveal">
+<div class="service-icon">✨</div>
+<h3>Facial Treatment</h3>
+<p>Professional facial care for fresh and glowing skin.</p>
+<div class="service-price">From ₹999</div>
+</div>
+
+<div class="service-card reveal">
+<div class="service-icon">👰</div>
+<h3>Bridal Makeup</h3>
+<p>Premium makeup service for your special day.</p>
+<div class="service-price">From ₹4,999</div>
+</div>
+
+<div class="service-card reveal">
+<div class="service-icon">💅</div>
+<h3>Manicure & Pedicure</h3>
+<p>Relax and refresh your hands and feet.</p>
+<div class="service-price">From ₹599</div>
+</div>
+
+<div class="service-card reveal">
+<div class="service-icon">💆</div>
+<h3>Hair Spa</h3>
+<p>Nourish and repair your hair with professional care.</p>
+<div class="service-price">From ₹799</div>
+</div>
+
+<div class="service-card reveal">
+<div class="service-icon">👑</div>
+<h3>Grooming Package</h3>
+<p>Complete premium grooming experience.</p>
+<div class="service-price">From ₹1,999</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- OFFER -->
+
+<div class="offer reveal">
+
+<div>
+<div class="section-small">🔥 SPECIAL OFFER</div>
+
+<h2>
+Get <span>20% OFF</span><br>
+On Your First Visit
+</h2>
+</div>
+
+<a href="#booking" class="primary-btn">
+Claim Offer →
+</a>
+
+</div>
+
+<!-- GALLERY -->
 
 <section id="gallery">
 
-<h2 class="title">
-Our <span>Gallery</span>
-</h2>
+<div class="section-head reveal">
 
-<div class="gallery">
+<div class="section-small">✦ OUR GALLERY</div>
 
-<div class="gallery-item">✨</div>
-<div class="gallery-item">💇</div>
-<div class="gallery-item">👑</div>
-<div class="gallery-item">💖</div>
-<div class="gallery-item">🌟</div>
-<div class="gallery-item">🔥</div>
-
-</div>
-
-</section>
-
-<section id="about">
-
-<h2 class="title">
-About <span>Royal Glow</span>
-</h2>
-
-<div class="about">
-
-<p>
-Royal Glow provides professional beauty, hair and grooming
-services with a premium experience and modern style.
-</p>
-
-<br>
-
-<p>
-✨ Professional Care<br>
-👑 Premium Experience<br>
-💖 Personal Attention<br>
-🔥 Modern Style
-</p>
-
-</div>
-
-</section>
-
-<section id="reviews">
-
-<h2 class="title">
-Client <span>Reviews</span>
-</h2>
-
-<div class="review">
-
-<div class="review-card">
-<div class="stars">★★★★★</div>
-<p>"Amazing service and professional experience."</p>
-<br>
-<b>— Happy Client</b>
-</div>
-
-<div class="review-card">
-<div class="stars">★★★★★</div>
-<p>"Loved the styling and premium service."</p>
-<br>
-<b>— Royal Customer</b>
-</div>
-
-<div class="review-card">
-<div class="stars">★★★★★</div>
-<p>"Highly recommended for grooming services."</p>
-<br>
-<b>— Client Review</b>
-</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2 class="title">
-Book Your <span>Appointment</span>
-</h2>
-
-<div class="contact-box">
-
-<h2>Ready For Your New Look?</h2>
-
-<div class="phone">
-📞 7077944098
-</div>
-
-<div class="contact-buttons">
-
-<a href="tel:7077944098" class="btn pink">
-📞 Call Now
-</a>
-
-<a href="https://wa.me/917077944098" class="btn dark">
-💬 WhatsApp
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<a href="https://wa.me/917077944098" class="whatsapp">
-💬
-</a>
-
-<footer>
-© 2026 Royal Glow | All Rights Reserved
-</footer>
-
-<script>
-window.addEventListener("load",function(){
-
-setTimeout(function(){
-
-const loader=document.getElementById("preloader");
-
-loader.style.opacity="0";
-loader.style.pointerEvents="none";
-
-setTimeout(function(){
-loader.style.display="none";
-},600);
-
-},1500);
-
-});
-</script>
-
-</body>
-</html>
+<h2 class="section-title">
+  
