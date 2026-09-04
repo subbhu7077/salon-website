@@ -4,76 +4,83 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Royal Glow | Beauty & Grooming</title>
+<title>Royal Glow | Premium Beauty & Salon</title>
 
 <style>
-:root{
-  --pink:#ff1493;
-  --pink2:#ff4db8;
-  --purple:#8a2be2;
-  --dark:#08040d;
-  --dark2:#120617;
-  --white:#ffffff;
-  --muted:#bdb5c5;
-  --green:#25d366;
-}
-
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
-html{
-  scroll-behavior:smooth;
+:root{
+  --pink:#ff008c;
+  --pink2:#ff4db8;
+  --dark:#08030d;
+  --dark2:#120519;
+  --white:#fff;
+  --gray:#c9c1cc;
 }
 
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:
-    radial-gradient(circle at 15% 20%,rgba(255,0,140,.18),transparent 25%),
-    radial-gradient(circle at 85% 35%,rgba(140,0,255,.14),transparent 28%),
-    #07030b;
+  radial-gradient(circle at 20% 20%,rgba(255,0,140,.12),transparent 25%),
+  radial-gradient(circle at 80% 50%,rgba(255,0,140,.08),transparent 25%),
+  #08030d;
   color:white;
   overflow-x:hidden;
 }
 
-/* ================= LOADER ================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+  radial-gradient(circle,rgba(255,0,140,.3) 1px,transparent 1px);
+  background-size:70px 70px;
+  opacity:.15;
+}
+
+/* LOADER */
 
 #loader{
   position:fixed;
   inset:0;
   background:#08030d;
-  z-index:99999;
+  z-index:9999;
   display:flex;
-  align-items:center;
   justify-content:center;
-  transition:.6s;
-}
-
-.loader-box{
-  text-align:center;
+  align-items:center;
+  flex-direction:column;
 }
 
 .loader-crown{
-  font-size:70px;
-  animation:pulse 1s infinite;
-  filter:drop-shadow(0 0 20px var(--pink));
+  font-size:60px;
+  animation:pulse 1.5s infinite;
 }
 
 .loader-text{
-  margin-top:12px;
-  letter-spacing:8px;
-  color:var(--pink2);
+  color:#ff4db8;
+  letter-spacing:6px;
+  margin-top:10px;
 }
 
 @keyframes pulse{
+  0%,100%{
+    transform:scale(1);
+    filter:drop-shadow(0 0 5px #ff008c);
+  }
+
   50%{
-    transform:scale(1.15);
+    transform:scale(1.2);
+    filter:drop-shadow(0 0 30px #ff008c);
   }
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 nav{
   position:fixed;
@@ -81,62 +88,58 @@ nav{
   left:50%;
   transform:translateX(-50%);
   width:min(94%,1200px);
-  min-height:68px;
-  z-index:999;
+  height:65px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:10px 22px;
-  border:1px solid rgba(255,255,255,.16);
+  padding:0 25px;
+  z-index:1000;
+  background:rgba(10,3,15,.85);
+  border:1px solid rgba(255,0,140,.3);
   border-radius:18px;
-  background:rgba(10,4,15,.82);
-  backdrop-filter:blur(20px);
-  box-shadow:0 0 30px rgba(255,0,140,.12);
+  backdrop-filter:blur(15px);
+  box-shadow:0 0 30px rgba(255,0,140,.15);
 }
 
 .logo{
-  color:#fff;
-  font-size:22px;
+  color:#ff4db8;
+  font-size:20px;
   font-weight:bold;
-  text-decoration:none;
-  white-space:nowrap;
+  text-shadow:0 0 15px #ff008c;
 }
 
-.logo span{
-  color:var(--pink);
+.logo small{
+  display:block;
+  font-size:8px;
+  letter-spacing:2px;
+  color:#aaa;
 }
 
 .nav-links{
   display:flex;
-  gap:28px;
+  gap:25px;
 }
 
 .nav-links a{
-  color:#fff;
+  color:white;
   text-decoration:none;
   font-size:14px;
   transition:.3s;
 }
 
 .nav-links a:hover{
-  color:var(--pink2);
-  text-shadow:0 0 12px var(--pink);
+  color:#ff4db8;
 }
 
-.nav-buttons{
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.book-btn{
-  background:linear-gradient(135deg,#ff008c,#ff4db8);
+.nav-btn{
+  border:none;
   color:white;
-  padding:13px 25px;
+  padding:12px 22px;
   border-radius:30px;
-  text-decoration:none;
+  background:linear-gradient(135deg,#ff008c,#ff4db8);
+  box-shadow:0 0 25px rgba(255,0,140,.8);
+  cursor:pointer;
   font-weight:bold;
-  box-shadow:0 0 25px rgba(255,0,140,.75);
 }
 
 .menu-btn{
@@ -144,754 +147,555 @@ nav{
   background:none;
   border:none;
   color:white;
-  font-size:26px;
+  font-size:25px;
+  cursor:pointer;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
   min-height:100vh;
-  padding:130px 7% 70px;
-  position:relative;
+  padding:150px 7% 80px;
   display:flex;
   align-items:center;
-}
-
-.hero-bg{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.glow{
-  position:absolute;
-  width:450px;
-  height:450px;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:.25;
-}
-
-.g1{
-  background:#ff008c;
-  left:-200px;
-  top:200px;
-}
-
-.g2{
-  background:#7a00ff;
-  right:-200px;
-  top:100px;
-}
-
-.hero-container{
-  width:min(1200px,100%);
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:50px;
-  align-items:center;
+  justify-content:space-between;
+  gap:40px;
   position:relative;
+}
+
+.hero-left{
+  width:55%;
   z-index:2;
 }
 
-.eyebrow{
-  color:#ff74c7;
+.hero-small{
+  color:#ff9bce;
   letter-spacing:5px;
   font-size:13px;
   margin-bottom:20px;
 }
 
-.hero-title{
-  font-size:clamp(55px,8vw,105px);
-  line-height:.86;
-  font-weight:900;
+.hero h1{
+  font-size:clamp(55px,9vw,130px);
+  line-height:.82;
   text-transform:uppercase;
-}
-
-.hero-title .beauty{
-  display:block;
-  color:#ff52b4;
+  font-weight:900;
   text-shadow:
-    2px 3px 0 #720038,
-    0 0 15px #ff1493,
-    0 0 40px #ff1493,
-    0 0 80px #a000ff;
-  animation:titleFloat 3s ease-in-out infinite;
+  0 3px 0 #9d0055,
+  0 8px 15px rgba(255,0,140,.5),
+  0 0 30px rgba(255,0,140,.8);
+  animation:textFloat 3s ease-in-out infinite;
 }
 
-.hero-title .small-line{
+.hero h1 span{
+  color:#ff008c;
   display:block;
-  font-size:.32em;
-  color:#ffd6ed;
-  margin:12px 0;
+  text-shadow:
+  0 3px 0 #850048,
+  0 0 30px #ff008c;
+}
+
+.hero-middle{
+  font-size:clamp(25px,4vw,60px);
+  color:#fff;
   font-style:italic;
-  text-transform:none;
+  margin:10px 0;
 }
 
-.hero-title .confidence{
-  display:block;
-  color:#f4ecff;
-  text-shadow:
-    3px 3px 0 #410026,
-    0 0 15px #ff1493,
-    0 0 45px #8a2be2;
-  animation:titleGlow 2s infinite alternate;
-}
-
-@keyframes titleFloat{
-  50%{
-    transform:translateY(-8px) rotate(-1deg);
-  }
-}
-
-@keyframes titleGlow{
-  from{
-    filter:brightness(1);
-  }
-  to{
-    filter:brightness(1.35);
-  }
-}
-
-.hero-description{
-  color:#d8d0dd;
+.hero p{
+  color:#ccc;
+  max-width:600px;
   line-height:1.8;
-  max-width:580px;
-  margin:28px 0;
-  font-size:16px;
+  margin:20px 0;
 }
 
-.hero-actions{
+.hero-buttons{
   display:flex;
   gap:15px;
   flex-wrap:wrap;
 }
 
-.primary-btn,
-.secondary-btn{
-  padding:16px 25px;
+.btn{
+  border:none;
+  padding:15px 28px;
   border-radius:30px;
-  text-decoration:none;
+  cursor:pointer;
+  color:white;
   font-weight:bold;
   transition:.3s;
-  display:inline-block;
 }
 
-.primary-btn{
-  color:#fff;
-  background:linear-gradient(135deg,#ff008c,#ff52b4);
-  box-shadow:0 0 30px rgba(255,0,140,.7);
+.btn-pink{
+  background:linear-gradient(135deg,#ff008c,#ff58bc);
+  box-shadow:0 0 25px rgba(255,0,140,.7);
 }
 
-.primary-btn:hover{
+.btn-dark{
+  background:transparent;
+  border:1px solid #777;
+}
+
+.btn:hover{
   transform:translateY(-4px) scale(1.03);
-}
-
-.secondary-btn{
-  color:white;
-  border:1px solid rgba(255,255,255,.35);
-}
-
-.secondary-btn:hover{
-  border-color:var(--pink);
-  box-shadow:0 0 20px rgba(255,0,140,.4);
 }
 
 /* HERO PHOTO */
 
-.hero-photo-area{
-  position:relative;
-  min-height:550px;
+.hero-right{
+  width:40%;
   display:flex;
   justify-content:center;
-  align-items:center;
+  position:relative;
 }
 
-.neon-ring{
-  position:absolute;
-  width:440px;
-  height:440px;
-  border-radius:50%;
-  border:3px solid #ff1493;
+.photo-ring{
+  width:min(400px,80vw);
+  height:min(500px,100vw);
+  position:relative;
+  border-radius:50% 50% 45% 45%;
+  background:radial-gradient(circle,#ff008c44,#000);
   box-shadow:
-    0 0 20px #ff1493,
-    inset 0 0 30px rgba(255,0,140,.3);
-  animation:ringRotate 8s linear infinite;
+  0 0 40px #ff008c,
+  inset 0 0 40px #ff008c;
+  animation:floatPhoto 4s ease-in-out infinite;
 }
 
-@keyframes ringRotate{
+.photo-ring::before{
+  content:"";
+  position:absolute;
+  inset:-20px;
+  border:3px solid #ff008c;
+  border-radius:50%;
+  box-shadow:0 0 40px #ff008c;
+  animation:rotate 8s linear infinite;
+}
+
+.hero-photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:45%;
+  position:relative;
+  z-index:2;
+  filter:contrast(1.1) saturate(1.1);
+}
+
+@keyframes rotate{
   to{
     transform:rotate(360deg);
   }
 }
 
-.photo-card{
-  width:340px;
-  height:470px;
-  border-radius:35px;
-  padding:8px;
-  background:linear-gradient(135deg,#ff008c,#480029,#ff008c);
-  box-shadow:
-    0 0 25px #ff1493,
-    0 0 80px rgba(255,0,140,.5);
-  transform:rotate(3deg);
-  animation:photoFloat 4s ease-in-out infinite;
-  position:relative;
-  z-index:2;
-}
+@keyframes floatPhoto{
+  0%,100%{
+    transform:translateY(0);
+  }
 
-.photo-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:28px;
-}
-
-@keyframes photoFloat{
   50%{
-    transform:translateY(-18px) rotate(-2deg);
+    transform:translateY(-20px);
   }
 }
 
-.photo-label{
-  position:absolute;
-  right:-20px;
-  bottom:35px;
-  background:#0b0610;
-  border:1px solid var(--pink);
-  padding:12px 18px;
-  border-radius:18px;
-  z-index:5;
-  box-shadow:0 0 20px rgba(255,0,140,.5);
+@keyframes textFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
 }
 
-/* ================= QUICK SERVICES ================= */
+/* STATS */
 
-.quick-services{
-  width:min(1150px,90%);
-  margin:-35px auto 0;
-  position:relative;
-  z-index:10;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.quick-item{
-  background:rgba(15,6,20,.9);
-  border:1px solid rgba(255,0,140,.4);
-  padding:15px;
-  text-align:center;
-  border-radius:15px;
-  color:#fff;
-  transition:.3s;
-}
-
-.quick-item:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 20px rgba(255,0,140,.5);
-}
-
-/* ================= STATS ================= */
-
-.stats-section{
-  padding:50px 7%;
-}
-
-.stats-grid{
-  max-width:1150px;
+.stats{
+  width:90%;
   margin:auto;
+  padding:25px;
+  border:1px solid rgba(255,0,140,.5);
+  border-radius:20px;
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  border:1px solid rgba(255,0,140,.5);
-  border-radius:25px;
-  overflow:hidden;
-  background:rgba(255,255,255,.025);
+  gap:20px;
+  background:#0e0613;
+  box-shadow:0 0 30px rgba(255,0,140,.2);
 }
 
 .stat{
   text-align:center;
-  padding:25px 15px;
-  border-right:1px solid rgba(255,255,255,.12);
+  border-right:1px solid #333;
 }
 
 .stat:last-child{
   border:none;
 }
 
-.stat h3{
+.stat h2{
+  color:#ff4db8;
   font-size:28px;
-  color:#fff;
-  text-shadow:0 0 15px var(--pink);
 }
 
 .stat p{
-  color:#c7bfcb;
-  margin-top:8px;
-  font-size:13px;
-}
-
-/* ================= GENERAL ================= */
-
-section{
-  padding:85px 7%;
-}
-
-.section-head{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-.section-small{
-  color:#ff63bd;
-  letter-spacing:4px;
+  color:#bbb;
   font-size:12px;
 }
 
-.section-title{
-  margin-top:10px;
-  font-size:clamp(32px,5vw,55px);
-}
+/* SECTION */
 
-.section-title span{
-  color:#ff4db8;
-  text-shadow:0 0 18px rgba(255,0,140,.6);
-}
-
-.section-sub{
-  color:#bbb1c1;
-  margin-top:12px;
-}
-
-/* ================= SERVICES ================= */
-
-.services-grid{
-  max-width:1200px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.service-card{
+section{
+  padding:100px 7%;
   position:relative;
-  overflow:hidden;
-  padding:28px;
-  min-height:230px;
-  border-radius:24px;
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
-  border:1px solid rgba(255,0,140,.3);
-  transition:.4s;
 }
 
-.service-card:hover{
-  transform:translateY(-10px) scale(1.02);
-  border-color:#ff1493;
-  box-shadow:0 15px 45px rgba(255,0,140,.25);
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
 }
 
-.service-icon{
-  width:58px;
-  height:58px;
+.section-title small{
+  color:#ff4db8;
+  letter-spacing:4px;
+}
+
+.section-title h2{
+  font-size:clamp(35px,5vw,60px);
+  margin-top:10px;
+}
+
+.section-title h2 span{
+  color:#ff008c;
+  text-shadow:0 0 20px #ff008c;
+}
+
+/* SERVICES */
+
+.services{
   display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:rgba(255,0,140,.12);
-  border:1px solid var(--pink);
-  font-size:27px;
-  margin-bottom:18px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
 }
 
-.service-card h3{
-  font-size:22px;
+.card{
+  background:linear-gradient(145deg,#18091f,#0b0510);
+  border:1px solid rgba(255,0,140,.35);
+  border-radius:20px;
+  padding:25px;
+  transition:.4s;
+  box-shadow:0 0 20px rgba(255,0,140,.08);
 }
 
-.service-card p{
-  color:#bfb5c5;
-  line-height:1.7;
-  margin:12px 0;
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#ff008c;
+  box-shadow:0 0 35px rgba(255,0,140,.5);
 }
 
-.service-price{
-  color:#ff64bd;
-  font-size:20px;
+.card-icon{
+  font-size:40px;
+}
+
+.card h3{
+  margin:15px 0 10px;
+}
+
+.card p{
+  color:#bbb;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.price{
+  color:#ff4db8;
+  margin-top:15px;
+  font-size:18px;
   font-weight:bold;
 }
 
-/* ================= OFFER ================= */
+.card button{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border-radius:20px;
+  border:none;
+  background:#ff008c;
+  color:white;
+  cursor:pointer;
+}
+
+/* OFFER */
 
 .offer{
-  max-width:1200px;
-  margin:20px auto;
-  min-height:210px;
-  border-radius:28px;
-  padding:40px;
+  margin:40px 7%;
+  padding:45px;
+  border-radius:25px;
+  border:1px solid #ff008c;
+  background:
+  radial-gradient(circle at 80% 50%,rgba(255,0,140,.4),transparent 30%),
+  #120713;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:30px;
-  border:1px solid rgba(255,0,140,.5);
-  background:
-    radial-gradient(circle at 70% 50%,rgba(255,0,140,.35),transparent 30%),
-    linear-gradient(135deg,#150512,#08040d);
-  box-shadow:0 0 35px rgba(255,0,140,.12);
+  box-shadow:0 0 35px rgba(255,0,140,.3);
 }
 
 .offer h2{
-  font-size:42px;
+  font-size:40px;
 }
 
 .offer h2 span{
   color:#ff4db8;
 }
 
-/* ================= GALLERY ================= */
+/* GALLERY */
 
-.gallery-grid{
-  max-width:1200px;
-  margin:auto;
+.gallery{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:14px;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
 }
 
-.gallery-card{
-  height:220px;
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-  border:2px solid rgba(255,0,140,.45);
-  background:linear-gradient(145deg,#260819,#08040d);
-  cursor:pointer;
-  transition:.3s;
-}
-
-.gallery-card:hover{
-  transform:translateY(-7px);
-  box-shadow:0 0 25px rgba(255,0,140,.55);
-}
-
-.gallery-card img{
+.gallery img{
   width:100%;
-  height:100%;
+  height:250px;
   object-fit:cover;
+  border-radius:20px;
+  border:1px solid rgba(255,0,140,.5);
+  cursor:pointer;
+  transition:.4s;
 }
 
-.gallery-placeholder{
-  height:100%;
-  display:grid;
-  place-items:center;
-  font-size:55px;
+.gallery img:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 30px #ff008c;
 }
 
-/* ================= ABOUT ================= */
+/* ABOUT */
 
-.about-grid{
-  max-width:1150px;
-  margin:auto;
+.about{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:50px;
   align-items:center;
 }
 
-.about-text p{
-  color:#c7becd;
-  line-height:1.9;
-  margin:18px 0;
+.about img{
+  width:100%;
+  max-height:550px;
+  object-fit:cover;
+  border-radius:30px;
+  border:2px solid #ff008c;
+  box-shadow:0 0 40px rgba(255,0,140,.5);
 }
 
-.features-grid{
+.about-text p{
+  color:#bbb;
+  line-height:1.8;
+  margin:20px 0;
+}
+
+.features{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
 }
 
 .feature{
-  padding:20px;
-  border-radius:18px;
-  border:1px solid rgba(255,0,140,.3);
-  background:rgba(255,255,255,.03);
+  padding:15px;
+  border:1px solid #333;
+  border-radius:15px;
 }
 
-.feature h4{
-  color:#ff63bd;
-  margin-bottom:8px;
-}
+/* EXPERTS */
 
-.about-photo{
-  display:flex;
-  justify-content:center;
-}
-
-.about-photo img{
-  width:300px;
-  height:380px;
-  object-fit:cover;
-  border-radius:50%;
-  border:4px solid var(--pink);
-  box-shadow:0 0 35px rgba(255,0,140,.7);
-}
-
-/* ================= TEAM ================= */
-
-.team-grid{
-  max-width:1100px;
-  margin:auto;
+.experts{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:20px;
 }
 
-.team-card{
+.expert{
   text-align:center;
 }
 
-.team-avatar{
-  width:115px;
-  height:115px;
+.expert img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
   border-radius:50%;
-  margin:auto;
+  border:3px solid #ff008c;
+  box-shadow:0 0 25px #ff008c;
+}
+
+/* REVIEWS */
+
+.reviews{
   display:grid;
-  place-items:center;
-  font-size:45px;
-  border:3px solid #ff1493;
-  background:radial-gradient(circle,#ff5ab7,#260818);
-  box-shadow:0 0 20px rgba(255,0,140,.5);
-}
-
-.team-card h4{
-  margin-top:13px;
-}
-
-.team-card p{
-  color:#aaa;
-  font-size:13px;
-  margin-top:5px;
-}
-
-/* ================= REVIEWS ================= */
-
-.reviews-grid{
-  max-width:1150px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
 }
 
-.review-card{
+.review{
   padding:25px;
-  border:1px solid rgba(255,0,140,.4);
   border-radius:20px;
-  background:rgba(255,255,255,.035);
+  border:1px solid #333;
+  background:#100713;
 }
 
 .stars{
   color:#ffd700;
-  margin-bottom:15px;
 }
 
-.review-card p{
-  color:#c8becd;
-  line-height:1.7;
-}
-
-.review-name{
-  color:#ff63bd;
-  margin-top:15px;
-}
-
-/* ================= BOOKING ================= */
+/* BOOKING */
 
 .booking-box{
-  max-width:1200px;
-  margin:auto;
-  padding:30px;
-  border-radius:30px;
-  border:1px solid rgba(255,0,140,.45);
-  background:
-    linear-gradient(135deg,rgba(255,0,140,.12),rgba(255,255,255,.02));
+  background:linear-gradient(135deg,#21091e,#100512);
+  border:1px solid #ff008c;
+  border-radius:25px;
+  padding:40px;
+  box-shadow:0 0 40px rgba(255,0,140,.25);
+}
+
+.form-grid{
   display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:30px;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.booking-info h2{
-  font-size:38px;
-}
-
-.booking-info h2 span{
-  color:#ff4db8;
-}
-
-.booking-info p{
-  color:#c4bbc9;
-  line-height:1.8;
-  margin-top:15px;
-}
-
-.booking-form{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea{
+input,
+select,
+textarea{
   width:100%;
-  padding:15px;
+  padding:16px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.12);
-  background:#0d0811;
+  border:1px solid #333;
+  background:#0b0710;
   color:white;
   outline:none;
 }
 
-.booking-form textarea{
-  grid-column:1/-1;
-  min-height:100px;
-  resize:vertical;
+textarea{
+  min-height:120px;
+  margin-top:15px;
 }
 
-.booking-form button{
-  grid-column:1/-1;
-  border:none;
-  cursor:pointer;
-  padding:17px;
-  border-radius:30px;
-  color:white;
-  font-weight:bold;
-  background:linear-gradient(135deg,#ff008c,#ff4db8);
-  box-shadow:0 0 25px rgba(255,0,140,.55);
-}
+/* CONTACT */
 
-/* ================= CONTACT ================= */
-
-.contact-grid{
-  max-width:1200px;
-  margin:auto;
+.contact{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:25px;
+  gap:20px;
 }
 
 .contact-card{
-  padding:28px;
-  border-right:1px solid rgba(255,255,255,.12);
+  padding:30px;
+  border:1px solid #333;
+  border-radius:20px;
+  background:#0d0612;
 }
 
 .contact-card h3{
+  color:#ff4db8;
   margin-bottom:15px;
 }
 
-.contact-card p{
-  color:#bbb1c1;
-  line-height:1.8;
-}
-
-.contact-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}
-
-.call-btn,
-.whatsapp-btn{
-  padding:14px 20px;
-  border-radius:25px;
-  text-decoration:none;
-  color:white;
-}
-
-.call-btn{
-  border:1px solid var(--pink);
-  box-shadow:0 0 18px rgba(255,0,140,.4);
-}
-
-.whatsapp-btn{
-  background:#25d366;
-  box-shadow:0 0 20px rgba(37,211,102,.5);
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
-  padding:35px 7%;
-  border-top:1px solid rgba(255,255,255,.1);
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-  color:#aaa;
+  padding:50px 7%;
+  border-top:1px solid #222;
+  text-align:center;
+  color:#888;
 }
 
-/* FLOAT BUTTONS */
+.footer-logo{
+  color:#ff4db8;
+  font-size:25px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
 
-.whatsapp-float{
+/* WHATSAPP */
+
+.whatsapp{
   position:fixed;
-  right:22px;
   bottom:25px;
+  right:25px;
   width:65px;
   height:65px;
   border-radius:50%;
-  display:grid;
-  place-items:center;
-  text-decoration:none;
-  background:#25d366;
+  border:none;
+  background:#25D366;
   color:white;
   font-size:30px;
-  z-index:998;
-  box-shadow:0 0 25px rgba(37,211,102,.7);
-  animation:floatButton 2s infinite;
+  cursor:pointer;
+  z-index:100;
+  box-shadow:0 0 30px #25D366;
 }
+
+/* TOP BUTTON */
 
 .top-btn{
   position:fixed;
-  right:25px;
-  bottom:105px;
-  width:48px;
-  height:48px;
+  bottom:100px;
+  right:30px;
+  width:45px;
+  height:45px;
   border-radius:50%;
-  display:none;
-  place-items:center;
-  background:#ff1493;
+  border:none;
+  background:#ff008c;
   color:white;
-  text-decoration:none;
-  z-index:998;
+  cursor:pointer;
+  display:none;
+  z-index:100;
 }
 
-@keyframes floatButton{
-  50%{
-    transform:translateY(-8px) scale(1.06);
-  }
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:5000;
+  justify-content:center;
+  align-items:center;
 }
 
-/* ================= MOBILE ================= */
+.modal img{
+  max-width:90%;
+  max-height:85vh;
+  border-radius:20px;
+  border:2px solid #ff008c;
+}
 
-@media(max-width:900px){
+.close-modal{
+  position:absolute;
+  top:30px;
+  right:30px;
+  font-size:40px;
+  cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
 
   nav{
-    top:8px;
-    width:96%;
+    padding:0 15px;
   }
 
   .nav-links{
-    display:none;
     position:absolute;
     top:75px;
     left:0;
     width:100%;
-    padding:20px;
-    background:#100815;
+    background:#100613;
     flex-direction:column;
-    border-radius:18px;
-    border:1px solid rgba(255,0,140,.3);
+    padding:20px;
+    display:none;
+    border-radius:15px;
+    border:1px solid #ff008c;
   }
 
   .nav-links.active{
@@ -902,105 +706,55 @@ footer{
     display:block;
   }
 
-  .nav-buttons .book-btn{
+  .nav-btn{
     display:none;
   }
 
   .hero{
-    padding:115px 20px 50px;
-  }
-
-  .hero-container{
-    grid-template-columns:1fr;
+    padding-top:130px;
+    flex-direction:column;
     text-align:center;
   }
 
-  .hero-description{
-    margin-left:auto;
-    margin-right:auto;
+  .hero-left,
+  .hero-right{
+    width:100%;
   }
 
-  .hero-actions{
+  .hero-buttons{
     justify-content:center;
   }
 
-  .hero-photo-area{
-    min-height:480px;
+  .hero h1{
+    font-size:65px;
   }
 
-  .photo-card{
-    width:270px;
-    height:370px;
-  }
-
-  .neon-ring{
-    width:320px;
-    height:320px;
-  }
-
-  .quick-services{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .stats-grid{
-    grid-template-columns:1fr 1fr;
+  .stats{
+    grid-template-columns:repeat(2,1fr);
   }
 
   .stat{
-    border-bottom:1px solid rgba(255,255,255,.1);
+    border:none;
   }
 
-  .services-grid{
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact{
     grid-template-columns:1fr;
   }
 
   .offer{
     flex-direction:column;
-    align-items:flex-start;
+    text-align:center;
   }
 
-  .gallery-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .about-grid{
-    grid-template-columns:1fr;
-  }
-
-  .team-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .reviews-grid{
-    grid-template-columns:1fr;
-  }
-
-  .booking-box{
-    grid-template-columns:1fr;
-  }
-
-  .contact-grid{
-    grid-template-columns:1fr;
-  }
-
-  section{
-    padding:65px 20px;
-  }
 }
-
-/* SCROLL ANIMATION */
-
-.reveal{
-  opacity:0;
-  transform:translateY(35px);
-  transition:.8s;
-}
-
-.reveal.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
 </style>
 </head>
 
@@ -1009,19 +763,18 @@ footer{
 <!-- LOADER -->
 
 <div id="loader">
-  <div class="loader-box">
-    <div class="loader-crown">👑</div>
-    <div class="loader-text">ROYAL GLOW</div>
-  </div>
+  <div class="loader-crown">👑</div>
+  <div class="loader-text">ROYAL GLOW</div>
 </div>
 
 <!-- NAVBAR -->
 
 <nav>
 
-<a href="#home" class="logo">
-👑 Royal <span>Glow</span>
-</a>
+<div class="logo">
+👑 Royal Glow
+<small>BEAUTY • STYLE • CONFIDENCE</small>
+</div>
 
 <div class="nav-links" id="navLinks">
 <a href="#home">Home</a>
@@ -1029,13 +782,16 @@ footer{
 <a href="#gallery">Gallery</a>
 <a href="#about">About</a>
 <a href="#reviews">Reviews</a>
-<a href="#contact">Contact</a>
+<a href="#booking">Contact</a>
 </div>
 
-<div class="nav-buttons">
-<a href="#booking" class="book-btn">Book Now</a>
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
-</div>
+<button class="nav-btn" onclick="scrollToBooking()">
+Book Now
+</button>
+
+<button class="menu-btn" onclick="toggleMenu()">
+☰
+</button>
 
 </nav>
 
@@ -1043,170 +799,134 @@ footer{
 
 <section class="hero" id="home">
 
-<div class="hero-bg">
-<div class="glow g1"></div>
-<div class="glow g2"></div>
+<div class="hero-left">
+
+<div class="hero-small">
+✨ PREMIUM BEAUTY EXPERIENCE ✨
 </div>
 
-<div class="hero-container">
-
-<div class="hero-content">
-
-<div class="eyebrow">✨ PREMIUM BEAUTY EXPERIENCE</div>
-
-<h1 class="hero-title">
-
-<span class="beauty">BEAUTY</span>
-
-<span class="small-line">is a form of</span>
-
-<span class="confidence">CONFIDENCE</span>
-
+<h1>
+BEAUTY
+<div class="hero-middle">is a form of</div>
+<span>CONFIDENCE</span>
 </h1>
 
-<p class="hero-description">
-Professional hair, beauty and grooming services designed
-to help you look stylish, feel confident and enjoy a premium experience.
+<p>
+Professional hair, beauty and grooming services designed to help you look stylish, feel confident and shine with your own Royal Glow.
 </p>
 
-<div class="hero-actions">
+<div class="hero-buttons">
 
-<a href="#booking" class="primary-btn">
+<button class="btn btn-pink" onclick="scrollToBooking()">
 📅 Book Appointment
-</a>
+</button>
 
-<a href="#services" class="secondary-btn">
+<button class="btn btn-dark" onclick="document.getElementById('services').scrollIntoView()">
 Explore Services →
-</a>
+</button>
 
 </div>
 
 </div>
 
-<div class="hero-photo-area">
+<div class="hero-right">
 
-<div class="neon-ring"></div>
-
-<div class="photo-card">
-<img src="IMG_2100.jpg" alt="Royal Glow">
-</div>
-
-<div class="photo-label">
-👑 ROYAL GLOW
-</div>
-
+<div class="photo-ring">
+<img src="IMG-100.jpg" class="hero-photo" alt="Royal Glow">
 </div>
 
 </div>
 
 </section>
 
-<!-- QUICK OPTIONS -->
-
-<div class="quick-services">
-
-<div class="quick-item">✂️ Hair</div>
-<div class="quick-item">✨ Beauty</div>
-<div class="quick-item">👑 Grooming</div>
-<div class="quick-item">💆 Self Care</div>
-
-</div>
-
 <!-- STATS -->
 
-<section class="stats-section">
-
-<div class="stats-grid reveal">
+<div class="stats">
 
 <div class="stat">
-<h3 class="counter" data-target="100">0</h3>
+<h2>1000+</h2>
 <p>Happy Clients</p>
 </div>
 
 <div class="stat">
-<h3 class="counter" data-target="5">0</h3>
+<h2>5+</h2>
 <p>Years Experience</p>
 </div>
 
 <div class="stat">
-<h3 class="counter" data-target="20">0</h3>
+<h2>20+</h2>
 <p>Beauty Experts</p>
 </div>
 
 <div class="stat">
-<h3>4.9⭐</h3>
+<h2>4.9⭐</h2>
 <p>Customer Rating</p>
 </div>
 
 <div class="stat">
-<h3>100%</h3>
+<h2>100%</h2>
 <p>Satisfaction</p>
 </div>
 
 </div>
 
-</section>
-
 <!-- SERVICES -->
 
 <section id="services">
 
-<div class="section-head reveal">
-
-<div class="section-small">✦ OUR SERVICES</div>
-
-<h2 class="section-title">
-Beauty Care For <span>Everyone</span>
-</h2>
-
-<p class="section-sub">
-Premium salon and grooming services for your best look.
-</p>
-
+<div class="section-title">
+<small>OUR SERVICES</small>
+<h2>Beauty Care For <span>Everyone</span></h2>
 </div>
 
-<div class="services-grid">
+<div class="services">
 
-<div class="service-card reveal">
-<div class="service-icon">💇</div>
+<div class="card">
+<div class="card-icon">✂️</div>
 <h3>Hair Cut & Styling</h3>
-<p>Modern haircut and premium styling for your personality.</p>
-<div class="service-price">From ₹299</div>
+<p>Professional haircut and stylish grooming.</p>
+<div class="price">From ₹299</div>
+<button onclick="selectService('Hair Cut & Styling')">Book Service</button>
 </div>
 
-<div class="service-card reveal">
-<div class="service-icon">✨</div>
+<div class="card">
+<div class="card-icon">✨</div>
 <h3>Facial Treatment</h3>
-<p>Professional facial care for fresh and glowing skin.</p>
-<div class="service-price">From ₹999</div>
+<p>Premium skincare and facial treatment.</p>
+<div class="price">From ₹999</div>
+<button onclick="selectService('Facial Treatment')">Book Service</button>
 </div>
 
-<div class="service-card reveal">
-<div class="service-icon">👰</div>
+<div class="card">
+<div class="card-icon">💄</div>
 <h3>Bridal Makeup</h3>
-<p>Premium makeup service for your special day.</p>
-<div class="service-price">From ₹4,999</div>
+<p>Beautiful professional makeup for special days.</p>
+<div class="price">From ₹4,999</div>
+<button onclick="selectService('Bridal Makeup')">Book Service</button>
 </div>
 
-<div class="service-card reveal">
-<div class="service-icon">💅</div>
+<div class="card">
+<div class="card-icon">💅</div>
 <h3>Manicure & Pedicure</h3>
-<p>Relax and refresh your hands and feet.</p>
-<div class="service-price">From ₹599</div>
+<p>Relaxing hand and foot care.</p>
+<div class="price">From ₹599</div>
+<button onclick="selectService('Manicure & Pedicure')">Book Service</button>
 </div>
 
-<div class="service-card reveal">
-<div class="service-icon">💆</div>
+<div class="card">
+<div class="card-icon">🧖</div>
 <h3>Hair Spa</h3>
-<p>Nourish and repair your hair with professional care.</p>
-<div class="service-price">From ₹799</div>
+<p>Healthy, smooth and beautiful hair.</p>
+<div class="price">From ₹799</div>
+<button onclick="selectService('Hair Spa')">Book Service</button>
 </div>
 
-<div class="service-card reveal">
-<div class="service-icon">👑</div>
+<div class="card">
+<div class="card-icon">🧔</div>
 <h3>Grooming Package</h3>
 <p>Complete premium grooming experience.</p>
-<div class="service-price">From ₹1,999</div>
+<div class="price">From ₹1,999</div>
+<button onclick="selectService('Grooming Package')">Book Service</button>
 </div>
 
 </div>
@@ -1215,20 +935,17 @@ Premium salon and grooming services for your best look.
 
 <!-- OFFER -->
 
-<div class="offer reveal">
+<div class="offer">
 
 <div>
-<div class="section-small">🔥 SPECIAL OFFER</div>
-
-<h2>
-Get <span>20% OFF</span><br>
-On Your First Visit
-</h2>
+<small>🔥 SPECIAL OFFER</small>
+<h2>Get <span>20% OFF</span></h2>
+<p>On your first Royal Glow visit.</p>
 </div>
 
-<a href="#booking" class="primary-btn">
+<button class="btn btn-pink" onclick="scrollToBooking()">
 Claim Offer →
-</a>
+</button>
 
 </div>
 
@@ -1236,9 +953,347 @@ Claim Offer →
 
 <section id="gallery">
 
-<div class="section-head reveal">
+<div class="section-title">
+<small>OUR GALLERY</small>
+<h2>Real <span>Transformations</span></h2>
+</div>
 
-<div class="section-small">✦ OUR GALLERY</div>
+<div class="gallery">
 
-<h2 class="section-title">
-  
+<img src="IMG-100.jpg" onclick="openImage(this.src)">
+<img src="IMG-100.jpg" onclick="openImage(this.src)">
+<img src="IMG-100.jpg" onclick="openImage(this.src)">
+<img src="IMG-100.jpg" onclick="openImage(this.src)">
+<img src="IMG-100.jpg" onclick="openImage(this.src)">
+<img src="IMG-100.jpg" onclick="openImage(this.src)">
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="about">
+
+<div>
+<img src="IMG-100.jpg" alt="Royal Glow">
+</div>
+
+<div class="about-text">
+
+<small>✨ ABOUT ROYAL GLOW</small>
+
+<h2>More Than A Salon,<br><span style="color:#ff008c">A Beauty Experience.</span></h2>
+
+<p>
+Royal Glow provides professional beauty, hair and grooming services with a focus on style, confidence and customer satisfaction.
+</p>
+
+<div class="features">
+
+<div class="feature">
+✨ Premium Products
+</div>
+
+<div class="feature">
+✂️ Expert Stylists
+</div>
+
+<div class="feature">
+🛡 Hygiene & Safety
+</div>
+
+<div class="feature">
+❤️ Customer Care
+</div>
+
+</div>
+
+<br>
+
+<button class="btn btn-pink" onclick="scrollToBooking()">
+Learn More →
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EXPERTS -->
+
+<section>
+
+<div class="section-title">
+<small>OUR TEAM</small>
+<h2>Meet Our <span>Experts</span></h2>
+</div>
+
+<div class="experts">
+
+<div class="expert">
+<img src="IMG-100.jpg">
+<h3>Hair Expert</h3>
+<p>Professional Stylist</p>
+</div>
+
+<div class="expert">
+<img src="IMG-100.jpg">
+<h3>Beauty Expert</h3>
+<p>Beauty Specialist</p>
+</div>
+
+<div class="expert">
+<img src="IMG-100.jpg">
+<h3>Skin Expert</h3>
+<p>Facial Care</p>
+</div>
+
+<div class="expert">
+<img src="IMG-100.jpg">
+<h3>Style Expert</h3>
+<p>Hair Artist</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section id="reviews">
+
+<div class="section-title">
+<small>CLIENT REVIEWS</small>
+<h2>What Our <span>Clients Say</span></h2>
+</div>
+
+<div class="reviews">
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>"Amazing service and professional experience!"</p>
+<br>
+<strong>— Priya S.</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>"Loved the styling and premium service."</p>
+<br>
+<strong>— Neha K.</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>"Best salon experience. Highly recommended!"</p>
+<br>
+<strong>— Riya M.</strong>
+</div>
+
+</div>
+
+</section>
+
+<!-- BOOKING -->
+
+<section id="booking">
+
+<div class="booking-box">
+
+<div class="section-title">
+<small>📅 BOOK APPOINTMENT</small>
+<h2>Your Beauty <span>Journey Starts Here</span></h2>
+</div>
+
+<div class="form-grid">
+
+<input type="text" id="name" placeholder="Your Name">
+
+<input type="tel" id="phone" placeholder="Phone Number">
+
+<select id="service">
+
+<option value="">Select Service</option>
+
+<option>Hair Cut & Styling</option>
+<option>Facial Treatment</option>
+<option>Bridal Makeup</option>
+<option>Manicure & Pedicure</option>
+<option>Hair Spa</option>
+<option>Grooming Package</option>
+
+</select>
+
+<input type="date" id="date">
+
+</div>
+
+<textarea id="message" placeholder="Any Special Message?"></textarea>
+
+<br><br>
+
+<button class="btn btn-pink" style="width:100%" onclick="sendBooking()">
+Send Booking on WhatsApp 💬
+</button>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section>
+
+<div class="section-title">
+<small>CONTACT US</small>
+<h2>Let's Stay <span>Connected</span></h2>
+</div>
+
+<div class="contact">
+
+<div class="contact-card">
+<h3>📞 Call Now</h3>
+<p>7077944098</p>
+<br>
+<button class="btn btn-pink" onclick="callNow()">
+Call Now
+</button>
+</div>
+
+<div class="contact-card">
+<h3>💬 WhatsApp</h3>
+<p>Chat with Royal Glow directly.</p>
+<br>
+<button class="btn btn-pink" onclick="openWhatsApp()">
+WhatsApp Chat
+</button>
+</div>
+
+<div class="contact-card">
+<h3>🕒 Opening Hours</h3>
+<p>Mon-Sat: 10:00 AM - 9:00 PM</p>
+<p>Sunday: 11:00 AM - 6:00 PM</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-logo">
+👑 Royal Glow
+</div>
+
+<p>Beauty • Style • Confidence</p>
+
+<br>
+
+<p>© 2026 Royal Glow. All Rights Reserved.</p>
+
+</footer>
+
+<!-- FLOATING BUTTONS -->
+
+<button class="whatsapp" onclick="openWhatsApp()">
+💬
+</button>
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo(0,0)">
+↑
+</button>
+
+<!-- IMAGE MODAL -->
+
+<div class="modal" id="modal">
+
+<span class="close-modal" onclick="closeImage()">×</span>
+
+<img id="modalImage">
+
+</div>
+
+<script>
+
+/* LOADER */
+
+window.addEventListener("load",function(){
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display="none";
+
+},1500);
+
+});
+
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+document.getElementById("navLinks").classList.toggle("active");
+
+}
+
+
+/* BOOKING SCROLL */
+
+function scrollToBooking(){
+
+document.getElementById("booking").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* SELECT SERVICE */
+
+function selectService(serviceName){
+
+document.getElementById("service").value=serviceName;
+
+scrollToBooking();
+
+}
+
+
+/* WHATSAPP */
+
+function openWhatsApp(){
+
+let phone="917077944098";
+
+let message="Hello Royal Glow! I want to know more about your beauty and salon services.";
+
+window.open(
+"https://wa.me/"+phone+"?text="+encodeURIComponent(message),
+"_blank"
+);
+
+}
+
+
+/* CALL */
+
+function callNow(){
+
+window.location.href="tel:7077944098";
+
+}
+
+
+/* SEND BOOKING */
+
+function sendBooking(){
+
+let name=document.getElementById("name").value.trim();
+
+let phone=document.getElementById("phone").value.tr
