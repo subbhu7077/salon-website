@@ -7,281 +7,262 @@
 <title>Royal Glow Salon | Beauty & Style</title>
 
 <style>
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial, sans-serif;
-    background:#08060d;
-    color:white;
-    overflow-x:hidden;
+  font-family:Arial,sans-serif;
+  background:#08060d;
+  color:white;
+  overflow-x:hidden;
 }
 
-/* ================= BACKGROUND ================= */
+/* BACKGROUND GLOW */
 
 body::before{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#ff008c;
-    filter:blur(180px);
-    opacity:.15;
-    top:-200px;
-    right:-200px;
-    z-index:-1;
+  content:"";
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:#ff008c;
+  filter:blur(180px);
+  opacity:.15;
+  top:-200px;
+  right:-200px;
+  z-index:-1;
 }
 
 body::after{
-    content:"";
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#7a00ff;
-    filter:blur(180px);
-    opacity:.15;
-    bottom:-250px;
-    left:-200px;
-    z-index:-1;
+  content:"";
+  position:fixed;
+  width:500px;
+  height:500px;
+  background:#7a00ff;
+  filter:blur(180px);
+  opacity:.15;
+  bottom:-250px;
+  left:-200px;
+  z-index:-1;
 }
 
-/* ================= NAVBAR ================= */
+/* LOADER */
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:#08060d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  transition:1s;
+}
+
+.loader-logo{
+  font-size:30px;
+  font-weight:bold;
+  color:#ff4da6;
+  text-align:center;
+  text-shadow:0 0 20px #ff008c,0 0 50px #ff008c;
+  animation:loaderGlow 1.5s infinite alternate;
+}
+
+@keyframes loaderGlow{
+  from{transform:scale(.9);}
+  to{transform:scale(1.1);}
+}
+
+/* NAVBAR */
 
 nav{
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 7%;
-    background:rgba(5,5,10,.75);
-    backdrop-filter:blur(15px);
-    position:fixed;
-    top:0;
-    z-index:1000;
-    border-bottom:1px solid rgba(255,255,255,.08);
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 7%;
+  background:rgba(5,5,10,.8);
+  backdrop-filter:blur(15px);
+  position:fixed;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo{
-    font-size:24px;
-    font-weight:bold;
-    color:#ff4da6;
-    text-shadow:
-        0 0 10px #ff008c,
-        0 0 25px #ff008c;
+  font-size:24px;
+  font-weight:bold;
+  color:#ff4da6;
+  text-shadow:0 0 10px #ff008c,0 0 25px #ff008c;
 }
 
 .logo span{
-    color:white;
+  color:white;
 }
 
 .nav-links{
-    display:flex;
-    gap:25px;
+  display:flex;
+  gap:25px;
 }
 
 .nav-links a{
-    color:white;
-    text-decoration:none;
-    font-size:14px;
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:#ff4da6;
-    text-shadow:0 0 10px #ff008c;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
 }
 
 .nav-button{
-    padding:12px 22px;
-    border-radius:30px;
-    border:1px solid #ff3b9d;
-    color:white;
-    text-decoration:none;
-    box-shadow:
-        0 0 10px #ff008c,
-        inset 0 0 10px rgba(255,0,140,.2);
+  padding:12px 22px;
+  border-radius:30px;
+  border:1px solid #ff3b9d;
+  color:white;
+  text-decoration:none;
+  box-shadow:0 0 15px #ff008c;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    padding:120px 8% 60px;
-    position:relative;
-    overflow:hidden;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:120px 8% 60px;
 }
 
 .hero-content{
-    width:55%;
-    z-index:2;
+  width:55%;
 }
 
 .small-title{
-    color:#ff6bb5;
-    letter-spacing:3px;
-    font-size:13px;
-    margin-bottom:15px;
+  color:#ff6bb5;
+  letter-spacing:3px;
+  font-size:13px;
+  margin-bottom:15px;
 }
 
 .hero h1{
-    font-size:70px;
-    line-height:1;
-    margin-bottom:20px;
-    font-weight:900;
+  font-size:70px;
+  line-height:1;
+  margin-bottom:20px;
 }
 
-.hero h1 .glow{
-    color:#ff4da6;
-    text-shadow:
-        3px 3px 0 #7a0045,
-        0 0 10px #ff008c,
-        0 0 30px #ff008c,
-        0 0 60px #ff008c;
-    animation:glowText 2s infinite alternate;
+.glow{
+  color:#ff4da6;
+  text-shadow:
+  3px 3px 0 #7a0045,
+  0 0 15px #ff008c,
+  0 0 50px #ff008c;
+  animation:glowText 2s infinite alternate;
 }
 
 @keyframes glowText{
-    from{
-        text-shadow:
-        3px 3px 0 #7a0045,
-        0 0 10px #ff008c;
-    }
-
-    to{
-        text-shadow:
-        3px 3px 0 #7a0045,
-        0 0 25px #ff008c,
-        0 0 60px #ff008c,
-        0 0 100px #ff008c;
-    }
+  from{
+    text-shadow:0 0 10px #ff008c;
+  }
+  to{
+    text-shadow:0 0 25px #ff008c,0 0 70px #ff008c;
+  }
 }
 
 .hero p{
-    color:#d8d8d8;
-    font-size:18px;
-    max-width:600px;
-    line-height:1.7;
-    margin-bottom:30px;
+  color:#ddd;
+  font-size:18px;
+  line-height:1.7;
+  margin-bottom:30px;
 }
 
 .hero-buttons{
-    display:flex;
-    gap:15px;
-    flex-wrap:wrap;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
 .btn{
-    padding:15px 28px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.4s;
+  padding:15px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
 }
 
 .btn-pink{
-    background:linear-gradient(45deg,#ff008c,#ff65b3);
-    color:white;
-    box-shadow:
-        0 0 20px #ff008c,
-        0 0 50px rgba(255,0,140,.5);
-}
-
-.btn-pink:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:
-        0 0 35px #ff008c,
-        0 0 80px #ff008c;
+  background:linear-gradient(45deg,#ff008c,#ff65b3);
+  color:white;
+  box-shadow:0 0 25px #ff008c;
 }
 
 .btn-dark{
-    border:1px solid #555;
-    color:white;
+  border:1px solid #555;
+  color:white;
 }
 
-.btn-dark:hover{
-    border-color:#ff008c;
-    box-shadow:0 0 20px #ff008c;
-}
-
-/* ================= 3D ORB ================= */
+/* 3D ORB */
 
 .hero-visual{
-    width:45%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
+  width:45%;
+  display:flex;
+  justify-content:center;
 }
 
 .orb{
-    width:380px;
-    height:380px;
-    border-radius:50%;
-    background:
-        radial-gradient(circle at 30% 30%,#ffb0da,#ff008c 30%,#7a0045 60%,#0b0710 75%);
-    box-shadow:
-        inset -30px -30px 70px rgba(0,0,0,.8),
-        0 0 50px #ff008c,
-        0 0 120px rgba(255,0,140,.7);
-    animation:floatOrb 5s ease-in-out infinite;
-    position:relative;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,#ffb0da,#ff008c 30%,#7a0045 60%,#0b0710 75%);
+  box-shadow:
+  inset -30px -30px 70px rgba(0,0,0,.8),
+  0 0 50px #ff008c,
+  0 0 120px rgba(255,0,140,.7);
+  animation:floatOrb 5s ease-in-out infinite;
+  position:relative;
 }
 
 .orb::before{
-    content:"";
-    position:absolute;
-    width:440px;
-    height:130px;
-    border:3px solid #ff008c;
-    border-radius:50%;
-    left:-30px;
-    top:120px;
-    transform:rotate(-20deg);
-    box-shadow:0 0 25px #ff008c;
+  content:"";
+  position:absolute;
+  width:420px;
+  height:120px;
+  border:3px solid #ff008c;
+  border-radius:50%;
+  left:-35px;
+  top:110px;
+  transform:rotate(-20deg);
+  box-shadow:0 0 25px #ff008c;
 }
 
 .orb::after{
-    content:"ROYAL GLOW";
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:45%;
-    font-weight:bold;
-    letter-spacing:5px;
-    color:white;
-    text-shadow:0 0 15px #ff008c;
+  content:"ROYAL GLOW";
+  position:absolute;
+  width:100%;
+  text-align:center;
+  top:45%;
+  font-weight:bold;
+  letter-spacing:4px;
+  text-shadow:0 0 15px #ff008c;
 }
 
 @keyframes floatOrb{
-    0%,100%{
-        transform:translateY(0) rotate(0deg);
-    }
-
-    50%{
-        transform:translateY(-25px) rotate(8deg);
-    }
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-25px) rotate(8deg);}
 }
 
-/* ================= FLOATING PARTICLES ================= */
+/* PARTICLES */
 
 .particle{
-    position:absolute;
-    width:8px;
-    height:8px;
-    background:#ff008c;
-    border-radius:50%;
-    box-shadow:0 0 15px #ff008c;
-    animation:floatParticle linear infinite;
+  position:absolute;
+  width:8px;
+  height:8px;
+  background:#ff008c;
+  border-radius:50%;
+  box-shadow:0 0 15px #ff008c;
+  animation:floatParticle linear infinite;
 }
 
 .p1{left:10%;animation-duration:8s;}
@@ -290,435 +271,324 @@ nav{
 .p4{left:85%;animation-duration:11s;}
 
 @keyframes floatParticle{
-    0%{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-
-    20%{
-        opacity:1;
-    }
-
-    100%{
-        transform:translateY(-100px);
-        opacity:0;
-    }
+  0%{transform:translateY(100vh);opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateY(-100px);opacity:0;}
 }
 
-/* ================= FEATURES ================= */
+/* FEATURES */
 
 .features{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    padding:30px 8%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  padding:30px 8%;
 }
 
 .feature{
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.08);
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    transition:.4s;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
 }
 
-.feature:hover{
-    transform:translateY(-10px) rotateX(5deg);
-    border-color:#ff008c;
-    box-shadow:0 0 25px rgba(255,0,140,.4);
-}
-
-.feature h3{
-    color:#ff66b5;
-    margin-bottom:8px;
-}
-
-/* ================= SECTIONS ================= */
+/* SECTIONS */
 
 section{
-    padding:90px 8%;
+  padding:90px 8%;
 }
 
 .section-tag{
-    color:#ff4da6;
-    font-size:13px;
-    letter-spacing:3px;
-    margin-bottom:10px;
+  color:#ff4da6;
+  font-size:13px;
+  letter-spacing:3px;
+  margin-bottom:10px;
 }
 
 .section-title{
-    font-size:42px;
-    margin-bottom:15px;
+  font-size:42px;
+  margin-bottom:15px;
 }
 
 .section-title span{
-    color:#ff4da6;
-    text-shadow:0 0 15px #ff008c;
+  color:#ff4da6;
+  text-shadow:0 0 15px #ff008c;
 }
 
 .section-text{
-    color:#aaa;
-    max-width:650px;
-    line-height:1.7;
-    margin-bottom:40px;
+  color:#aaa;
+  max-width:650px;
+  line-height:1.7;
+  margin-bottom:40px;
 }
 
-/* ================= SERVICES ================= */
+/* SERVICES */
 
 .services-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
 }
 
 .service-card{
-    background:linear-gradient(
-        145deg,
-        rgba(255,255,255,.08),
-        rgba(255,255,255,.02)
-    );
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:20px;
-    padding:30px;
-    transition:.4s;
-    position:relative;
-    overflow:hidden;
-}
-
-.service-card::before{
-    content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    background:#ff008c;
-    filter:blur(80px);
-    opacity:.2;
-    top:-80px;
-    right:-80px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;
+  padding:30px;
+  transition:.4s;
 }
 
 .service-card:hover{
-    transform:
-        perspective(1000px)
-        rotateX(8deg)
-        rotateY(-8deg)
-        translateY(-10px);
-
-    border-color:#ff008c;
-
-    box-shadow:
-        0 15px 40px rgba(255,0,140,.25);
+  transform:perspective(1000px) rotateX(8deg) rotateY(-8deg) translateY(-10px);
+  border-color:#ff008c;
+  box-shadow:0 15px 40px rgba(255,0,140,.25);
 }
 
 .service-icon{
-    font-size:45px;
-    margin-bottom:20px;
-}
-
-.service-card h3{
-    font-size:23px;
-    margin-bottom:10px;
+  font-size:45px;
+  margin-bottom:20px;
 }
 
 .service-card p{
-    color:#aaa;
-    line-height:1.6;
+  color:#aaa;
+  margin-top:10px;
 }
 
 .price{
-    display:inline-block;
-    margin-top:20px;
-    color:#ff65b3;
-    font-size:22px;
-    font-weight:bold;
+  margin-top:20px;
+  color:#ff65b3;
+  font-size:22px;
+  font-weight:bold;
 }
 
-/* ================= GALLERY ================= */
+/* GALLERY */
 
 .gallery{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
 .gallery-box{
-    height:220px;
-    border-radius:20px;
-    background:
-        linear-gradient(
-            135deg,
-            #ff008c,
-            #7a00ff,
-            #111
-        );
-    position:relative;
-    overflow:hidden;
-    transition:.5s;
-}
-
-.gallery-box:nth-child(2){
-    background:linear-gradient(135deg,#ff7eb3,#7b2cff,#111);
-}
-
-.gallery-box:nth-child(3){
-    background:linear-gradient(135deg,#ffb347,#ff008c,#111);
-}
-
-.gallery-box:nth-child(4){
-    background:linear-gradient(135deg,#7a00ff,#ff008c,#111);
-}
-
-.gallery-box::after{
-    content:"ROYAL GLOW";
-    position:absolute;
-    bottom:20px;
-    left:20px;
-    font-weight:bold;
-    letter-spacing:2px;
+  height:220px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#ff008c,#7a00ff,#111);
+  transition:.5s;
 }
 
 .gallery-box:hover{
-    transform:scale(1.05) rotate(2deg);
-    box-shadow:
-        0 0 30px #ff008c;
+  transform:scale(1.05);
+  box-shadow:0 0 30px #ff008c;
 }
 
-/* ================= ABOUT ================= */
+/* ABOUT */
 
 .about-box{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
 }
 
 .about-visual{
-    height:350px;
-    border-radius:25px;
-    background:
-        radial-gradient(circle,#ff008c,#7a0045 45%,#111 70%);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:70px;
-    box-shadow:
-        0 0 50px rgba(255,0,140,.4);
+  height:350px;
+  border-radius:25px;
+  background:radial-gradient(circle,#ff008c,#7a0045 45%,#111 70%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:70px;
 }
 
 .stats{
-    display:flex;
-    gap:25px;
-    flex-wrap:wrap;
-    margin-top:30px;
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
 .stat{
-    background:rgba(255,255,255,.05);
-    padding:20px;
-    border-radius:15px;
-    min-width:120px;
+  background:rgba(255,255,255,.05);
+  padding:20px;
+  border-radius:15px;
 }
 
 .stat h3{
-    color:#ff4da6;
-    font-size:28px;
+  color:#ff4da6;
+  font-size:28px;
 }
 
-/* ================= REVIEWS ================= */
+/* REVIEWS */
 
 .review-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
 .review{
-    background:rgba(255,255,255,.04);
-    padding:25px;
-    border-radius:20px;
-    border:1px solid rgba(255,255,255,.08);
-    transition:.3s;
-}
-
-.review:hover{
-    border-color:#ff008c;
-    transform:translateY(-7px);
+  background:rgba(255,255,255,.04);
+  padding:25px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
 }
 
 .stars{
-    color:#ffd700;
-    margin:10px 0;
+  color:#ffd700;
+  margin:10px 0;
 }
 
 .review p{
-    color:#aaa;
-    line-height:1.6;
+  color:#aaa;
 }
 
-/* ================= CONTACT ================= */
+/* CONTACT */
 
 .contact-box{
-    text-align:center;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,0,140,.15),
-            rgba(122,0,255,.15)
-        );
-
-    border:1px solid rgba(255,0,140,.3);
-    padding:60px 20px;
-    border-radius:30px;
+  text-align:center;
+  background:linear-gradient(135deg,rgba(255,0,140,.15),rgba(122,0,255,.15));
+  border:1px solid rgba(255,0,140,.3);
+  padding:60px 20px;
+  border-radius:30px;
 }
 
-.contact-box h2{
-    font-size:40px;
-    margin-bottom:15px;
+/* BOOKING FORM */
+
+.booking-form{
+  max-width:500px;
+  margin:30px auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
 }
 
-.contact-box p{
-    color:#bbb;
-    margin-bottom:25px;
+.booking-form input,
+.booking-form select{
+  padding:16px;
+  border-radius:12px;
+  border:1px solid #444;
+  background:#111;
+  color:white;
+  font-size:16px;
 }
 
-/* ================= WHATSAPP ================= */
+.booking-form input:focus,
+.booking-form select:focus{
+  outline:none;
+  border-color:#ff008c;
+  box-shadow:0 0 15px rgba(255,0,140,.5);
+}
+
+/* WHATSAPP */
 
 .whatsapp{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:60px;
-    height:60px;
-    background:#25D366;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
-    text-decoration:none;
-    color:white;
-    z-index:999;
-    box-shadow:
-        0 0 20px #25D366;
-    animation:pulse 2s infinite;
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:60px;
+  height:60px;
+  background:#25D366;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+  text-decoration:none;
+  color:white;
+  z-index:999;
+  box-shadow:0 0 20px #25D366;
 }
 
-@keyframes pulse{
-    0%{
-        box-shadow:0 0 0 0 rgba(37,211,102,.7);
-    }
-
-    70%{
-        box-shadow:0 0 0 20px rgba(37,211,102,0);
-    }
-
-    100%{
-        box-shadow:0 0 0 0 rgba(37,211,102,0);
-    }
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid rgba(255,255,255,.08);
-    color:#777;
+  text-align:center;
+  padding:30px;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:#777;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
-    nav{
-        padding:15px 5%;
-    }
+  .nav-links{
+    display:none;
+  }
 
-    .nav-links{
-        display:none;
-    }
+  nav{
+    padding:15px 5%;
+  }
 
-    .nav-button{
-        font-size:12px;
-        padding:10px 15px;
-    }
+  .hero{
+    flex-direction:column;
+    text-align:center;
+    padding-top:130px;
+  }
 
-    .hero{
-        flex-direction:column;
-        text-align:center;
-        padding-top:130px;
-    }
+  .hero-content,
+  .hero-visual{
+    width:100%;
+  }
 
-    .hero-content,
-    .hero-visual{
-        width:100%;
-    }
+  .hero h1{
+    font-size:45px;
+  }
 
-    .hero h1{
-        font-size:45px;
-    }
+  .hero-visual{
+    margin-top:50px;
+  }
 
-    .hero-visual{
-        margin-top:60px;
-    }
+  .orb{
+    width:260px;
+    height:260px;
+  }
 
-    .orb{
-        width:260px;
-        height:260px;
-    }
+  .orb::before{
+    width:300px;
+    left:-20px;
+    top:80px;
+  }
 
-    .orb::before{
-        width:300px;
-        left:-20px;
-        top:80px;
-    }
+  .features{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .features{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .services-grid,
+  .review-grid{
+    grid-template-columns:1fr;
+  }
 
-    .services-grid{
-        grid-template-columns:1fr;
-    }
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .gallery{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .gallery-box{
+    height:150px;
+  }
 
-    .gallery-box{
-        height:160px;
-    }
+  .about-box{
+    grid-template-columns:1fr;
+  }
 
-    .about-box{
-        grid-template-columns:1fr;
-    }
-
-    .review-grid{
-        grid-template-columns:1fr;
-    }
-
-    .section-title{
-        font-size:32px;
-    }
-
+  .section-title{
+    font-size:32px;
+  }
 }
-
 </style>
-
 </head>
 
 <body>
 
-<!-- PARTICLES -->
+<div id="loader">
+  <div class="loader-logo">
+    👑<br>ROYAL GLOW
+  </div>
+</div>
 
 <div class="particle p1"></div>
 <div class="particle p2"></div>
 <div class="particle p3"></div>
 <div class="particle p4"></div>
-
-
-<!-- NAVBAR -->
 
 <nav>
 
@@ -727,13 +597,11 @@ footer{
 </div>
 
 <div class="nav-links">
-
 <a href="#home">Home</a>
 <a href="#services">Services</a>
 <a href="#gallery">Gallery</a>
 <a href="#about">About</a>
 <a href="#reviews">Reviews</a>
-
 </div>
 
 <a href="#contact" class="nav-button">
@@ -742,67 +610,44 @@ Book Now
 
 </nav>
 
-
-<!-- HERO -->
-
 <section class="hero" id="home">
 
 <div class="hero-content">
 
-<p class="small-title">
-✨ WELCOME TO ROYAL GLOW SALON
-</p>
+<p class="small-title">✨ WELCOME TO ROYAL GLOW SALON</p>
 
 <h1>
-
 <span class="glow">BEAUTY</span>
-
 <br>
-
 IS A FORM OF
-
 <br>
-
 <span class="glow">CONFIDENCE</span>
-
 </h1>
 
 <p>
-
 Professional Hair, Beauty & Grooming Services.
 Experience premium beauty care and transform your look.
-
 </p>
 
 <div class="hero-buttons">
 
-<a href="#contact" class="btn btn-pink">
-
+<a href="https://wa.me/917077944098?text=Hello%20I%20want%20to%20book%20an%20appointment" class="btn btn-pink">
 📅 Book Appointment
-
 </a>
 
 <a href="#services" class="btn btn-dark">
-
 Explore Services →
-
 </a>
 
 </div>
 
 </div>
 
-
 <div class="hero-visual">
-
 <div class="orb"></div>
-
 </div>
 
 </section>
-
-
-<!-- FEATURES -->
 
 <div class="features">
 
@@ -828,381 +673,251 @@ Explore Services →
 
 </div>
 
-
-<!-- SERVICES -->
-
 <section id="services">
 
-<p class="section-tag">
-OUR SERVICES
-</p>
+<p class="section-tag">OUR SERVICES</p>
 
 <h2 class="section-title">
-
-Beauty Care For
-
-<span>Everyone</span>
-
+Beauty Care For <span>Everyone</span>
 </h2>
 
 <p class="section-text">
-
-Discover our professional salon services designed to make you look and feel amazing.
-
+Discover our professional salon services.
 </p>
-
 
 <div class="services-grid">
 
-
 <div class="service-card">
-
 <div class="service-icon">💇</div>
-
 <h3>Hair Styling</h3>
-
-<p>
-Professional haircut, styling and hair transformation.
-</p>
-
-<div class="price">
-From ₹299
+<p>Professional haircut and styling.</p>
+<div class="price">From ₹299</div>
 </div>
-
-</div>
-
 
 <div class="service-card">
-
 <div class="service-icon">✨</div>
-
 <h3>Facial Treatment</h3>
-
-<p>
-Professional skin care treatment for glowing skin.
-</p>
-
-<div class="price">
-From ₹999
+<p>Professional skin care treatment.</p>
+<div class="price">From ₹999</div>
 </div>
-
-</div>
-
 
 <div class="service-card">
-
 <div class="service-icon">💄</div>
-
 <h3>Bridal Makeup</h3>
-
-<p>
-Premium bridal makeup for your special day.
-</p>
-
-<div class="price">
-From ₹4999
+<p>Premium bridal makeup service.</p>
+<div class="price">From ₹4999</div>
 </div>
-
-</div>
-
 
 <div class="service-card">
-
 <div class="service-icon">💅</div>
-
 <h3>Manicure</h3>
-
-<p>
-Beautiful nail care and premium manicure services.
-</p>
-
-<div class="price">
-From ₹599
+<p>Beautiful nail care service.</p>
+<div class="price">From ₹599</div>
 </div>
-
-</div>
-
 
 <div class="service-card">
-
 <div class="service-icon">💆</div>
-
 <h3>Hair Spa</h3>
-
-<p>
-Relaxing hair treatment for healthy and smooth hair.
-</p>
-
-<div class="price">
-From ₹799
+<p>Relaxing hair treatment.</p>
+<div class="price">From ₹799</div>
 </div>
-
-</div>
-
 
 <div class="service-card">
-
 <div class="service-icon">👑</div>
-
 <h3>Premium Package</h3>
-
-<p>
-Complete luxury beauty and grooming experience.
-</p>
-
-<div class="price">
-From ₹2999
+<p>Complete luxury beauty experience.</p>
+<div class="price">From ₹2999</div>
 </div>
 
 </div>
-
-</div>
-
 </section>
-
-
-<!-- GALLERY -->
 
 <section id="gallery">
 
-<p class="section-tag">
-OUR GALLERY
-</p>
+<p class="section-tag">OUR GALLERY</p>
 
 <h2 class="section-title">
-
-Real
-
-<span>Transformations</span>
-
+Real <span>Transformations</span>
 </h2>
-
-<p class="section-text">
-
-A glimpse of our beauty and styling experience.
-
-</p>
-
 
 <div class="gallery">
 
 <div class="gallery-box"></div>
-
 <div class="gallery-box"></div>
-
 <div class="gallery-box"></div>
-
 <div class="gallery-box"></div>
 
 </div>
 
 </section>
-
-
-<!-- ABOUT -->
 
 <section id="about">
 
 <div class="about-box">
 
-<div class="about-visual">
-
-✨
-
-</div>
-
+<div class="about-visual">✨</div>
 
 <div>
 
-<p class="section-tag">
-ABOUT US
-</p>
+<p class="section-tag">ABOUT US</p>
 
 <h2 class="section-title">
-
-Experience The
-
-<span>Art Of Beauty</span>
-
+Experience The <span>Art Of Beauty</span>
 </h2>
 
 <p class="section-text">
-
-At Royal Glow Salon, we believe beauty is more than appearance.
-
-Our professional team provides modern beauty, hair and grooming services designed to make you feel confident.
-
+Professional beauty, hair and grooming services designed to make you feel confident.
 </p>
-
 
 <div class="stats">
 
 <div class="stat">
-
 <h3>5+</h3>
-
 <p>Years Experience</p>
-
 </div>
 
-
 <div class="stat">
-
 <h3>1000+</h3>
-
 <p>Happy Clients</p>
-
 </div>
-
 
 <div class="stat">
-
 <h3>20+</h3>
-
 <p>Beauty Experts</p>
-
 </div>
 
 </div>
 
 </div>
-
 </div>
-
 </section>
-
-
-<!-- REVIEWS -->
 
 <section id="reviews">
 
-<p class="section-tag">
-CLIENT REVIEWS
-</p>
+<p class="section-tag">CLIENT REVIEWS</p>
 
 <h2 class="section-title">
-
-What Our
-
-<span>Customers Say</span>
-
+What Our <span>Customers Say</span>
 </h2>
-
 
 <div class="review-grid">
 
-
 <div class="review">
-
 <h3>Priya Sharma</h3>
-
-<div class="stars">
-★★★★★
+<div class="stars">★★★★★</div>
+<p>Amazing salon experience and professional staff.</p>
 </div>
-
-<p>
-Amazing salon experience. Loved my new hairstyle and the staff was very professional.
-</p>
-
-</div>
-
 
 <div class="review">
-
 <h3>Sneha Patel</h3>
-
-<div class="stars">
-★★★★★
+<div class="stars">★★★★★</div>
+<p>Highly recommended beauty services.</p>
 </div>
-
-<p>
-One of the best beauty salons. Highly recommended for bridal makeup.
-</p>
-
-</div>
-
 
 <div class="review">
-
 <h3>Rohit Mehta</h3>
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Excellent grooming service and very professional environment.
-</p>
-
+<div class="stars">★★★★★</div>
+<p>Excellent grooming service.</p>
 </div>
 
 </div>
-
 </section>
-
-
-<!-- CONTACT -->
 
 <section id="contact">
 
 <div class="contact-box">
 
-<h2>
-
-Ready For Your
-
-<span style="color:#ff4da6;">
-Transformation?
-</span>
-
+<h2 class="section-title">
+Book Your <span>Appointment</span>
 </h2>
 
-<p>
+<form class="booking-form" id="bookingForm">
 
-Book your appointment today and experience premium beauty care.
+<input type="text" id="name" placeholder="Your Name" required>
 
-</p>
+<input type="tel" id="phone" placeholder="Phone Number" required>
 
+<select id="service">
+<option value="">Select Service</option>
+<option>Hair Styling</option>
+<option>Facial</option>
+<option>Hair Spa</option>
+<option>Bridal Makeup</option>
+<option>Manicure</option>
+</select>
 
-<a href="#" class="btn btn-pink">
+<button type="submit" class="btn btn-pink">
+Book On WhatsApp
+</button>
 
-💬 Book On WhatsApp
-
-</a>
+</form>
 
 </div>
 
 </section>
 
-
-<!-- WHATSAPP -->
-
-<a href="#" class="whatsapp">
-
+<a
+href="https://wa.me/917077944098?text=Hello%20I%20want%20to%20book%20an%20appointment"
+class="whatsapp"
+>
 💬
-
 </a>
-
-
-<!-- FOOTER -->
 
 <footer>
 
-<p>
+<p>© 2026 Royal Glow Salon</p>
 
-© 2026 Royal Glow Salon
-
-</p>
-
-<p>
-
-Beauty • Style • Confidence
-
-</p>
+<p>Beauty • Style • Confidence</p>
 
 </footer>
 
+<script>
+
+/* LOADER */
+
+window.addEventListener("load",function(){
+
+setTimeout(function(){
+
+const loader=document.getElementById("loader");
+
+loader.style.opacity="0";
+
+setTimeout(function(){
+
+loader.style.display="none";
+
+},1000);
+
+},1200);
+
+});
+
+
+/* WHATSAPP BOOKING FORM */
+
+document.getElementById("bookingForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const name=document.getElementById("name").value;
+const phone=document.getElementById("phone").value;
+const service=document.getElementById("service").value;
+
+const message=
+"Hello! I want to book an appointment.%0A%0A"+
+"Name: "+name+"%0A"+
+"Phone: "+phone+"%0A"+
+"Service: "+service;
+
+window.open(
+"https://wa.me/917077944098?text="+message,
+"_blank"
+);
+
+});
+
+</script>
 
 </body>
-
 </html>
