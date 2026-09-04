@@ -4,591 +4,948 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Royal Glow Salon | Beauty & Style</title>
+<title>Royal Glow | Premium Salon</title>
 
 <style>
+
+:root{
+--pink:#ff168c;
+--pink2:#ff65b3;
+--purple:#7b2cff;
+--dark:#08030d;
+--card:#120817;
+--text:#ffffff;
+--muted:#b9adbd;
+}
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#08060d;
-  color:white;
-  overflow-x:hidden;
+font-family:Arial,sans-serif;
+background:
+radial-gradient(circle at 80% 10%,rgba(255,22,140,.18),transparent 25%),
+radial-gradient(circle at 10% 60%,rgba(123,44,255,.12),transparent 25%),
+#08030d;
+color:white;
+overflow-x:hidden;
 }
 
-/* BACKGROUND GLOW */
-
-body::before{
-  content:"";
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:#ff008c;
-  filter:blur(180px);
-  opacity:.15;
-  top:-200px;
-  right:-200px;
-  z-index:-1;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:#7a00ff;
-  filter:blur(180px);
-  opacity:.15;
-  bottom:-250px;
-  left:-200px;
-  z-index:-1;
-}
-
-/* LOADER */
+/* ================= LOADER ================= */
 
 #loader{
-  position:fixed;
-  inset:0;
-  background:#08060d;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  transition:1s;
+position:fixed;
+inset:0;
+background:#08030d;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+transition:1s;
 }
 
-.loader-logo{
-  font-size:30px;
-  font-weight:bold;
-  color:#ff4da6;
-  text-align:center;
-  text-shadow:0 0 20px #ff008c,0 0 50px #ff008c;
-  animation:loaderGlow 1.5s infinite alternate;
+.loader-box{
+text-align:center;
 }
 
-@keyframes loaderGlow{
-  from{transform:scale(.9);}
-  to{transform:scale(1.1);}
+.loader-crown{
+font-size:60px;
+animation:pulse 1.5s infinite alternate;
 }
 
-/* NAVBAR */
+.loader-text{
+font-size:25px;
+letter-spacing:4px;
+color:var(--pink);
+text-shadow:0 0 20px var(--pink);
+margin-top:10px;
+}
+
+@keyframes pulse{
+from{
+transform:scale(.9);
+filter:drop-shadow(0 0 5px #ff168c);
+}
+to{
+transform:scale(1.15);
+filter:drop-shadow(0 0 25px #ff168c);
+}
+}
+
+/* ================= NAVBAR ================= */
 
 nav{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 7%;
-  background:rgba(5,5,10,.8);
-  backdrop-filter:blur(15px);
-  position:fixed;
-  top:0;
-  z-index:1000;
-  border-bottom:1px solid rgba(255,255,255,.08);
+position:fixed;
+top:0;
+width:100%;
+z-index:1000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 7%;
+background:rgba(8,3,13,.82);
+backdrop-filter:blur(20px);
+border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo{
-  font-size:24px;
-  font-weight:bold;
-  color:#ff4da6;
-  text-shadow:0 0 10px #ff008c,0 0 25px #ff008c;
+font-size:25px;
+font-weight:bold;
 }
 
 .logo span{
-  color:white;
+color:var(--pink);
+text-shadow:0 0 15px var(--pink);
 }
 
 .nav-links{
-  display:flex;
-  gap:25px;
+display:flex;
+gap:28px;
 }
 
 .nav-links a{
-  color:white;
-  text-decoration:none;
-  font-size:14px;
+color:white;
+text-decoration:none;
+font-size:15px;
+transition:.3s;
 }
 
-.nav-button{
-  padding:12px 22px;
-  border-radius:30px;
-  border:1px solid #ff3b9d;
-  color:white;
-  text-decoration:none;
-  box-shadow:0 0 15px #ff008c;
+.nav-links a:hover{
+color:var(--pink);
 }
 
-/* HERO */
+.nav-btn{
+text-decoration:none;
+color:white;
+padding:13px 24px;
+border-radius:30px;
+border:1px solid var(--pink);
+box-shadow:0 0 20px rgba(255,22,140,.5);
+transition:.3s;
+}
+
+.nav-btn:hover{
+background:var(--pink);
+}
+
+/* ================= HERO ================= */
 
 .hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  padding:120px 8% 60px;
+min-height:100vh;
+padding:130px 7% 60px;
+display:grid;
+grid-template-columns:1fr 1fr;
+align-items:center;
+gap:40px;
+position:relative;
 }
 
-.hero-content{
-  width:55%;
-}
-
-.small-title{
-  color:#ff6bb5;
-  letter-spacing:3px;
-  font-size:13px;
-  margin-bottom:15px;
+.badge{
+display:inline-block;
+padding:10px 18px;
+border:1px solid rgba(255,22,140,.6);
+border-radius:30px;
+color:#ffb2d8;
+font-size:13px;
+letter-spacing:2px;
+margin-bottom:25px;
+box-shadow:0 0 20px rgba(255,22,140,.2);
 }
 
 .hero h1{
-  font-size:70px;
-  line-height:1;
-  margin-bottom:20px;
+font-size:clamp(55px,8vw,105px);
+line-height:.9;
+margin-bottom:25px;
 }
 
-.glow{
-  color:#ff4da6;
-  text-shadow:
-  3px 3px 0 #7a0045,
-  0 0 15px #ff008c,
-  0 0 50px #ff008c;
-  animation:glowText 2s infinite alternate;
-}
-
-@keyframes glowText{
-  from{
-    text-shadow:0 0 10px #ff008c;
-  }
-  to{
-    text-shadow:0 0 25px #ff008c,0 0 70px #ff008c;
-  }
+.pink{
+color:var(--pink2);
+text-shadow:
+0 0 10px var(--pink),
+0 0 30px var(--pink),
+0 0 70px rgba(255,22,140,.6);
 }
 
 .hero p{
-  color:#ddd;
-  font-size:18px;
-  line-height:1.7;
-  margin-bottom:30px;
+color:var(--muted);
+font-size:18px;
+line-height:1.8;
+max-width:600px;
+margin-bottom:30px;
 }
 
 .hero-buttons{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
 }
 
 .btn{
-  padding:15px 28px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
-  border:none;
-  cursor:pointer;
+padding:17px 28px;
+border-radius:35px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+transition:.3s;
 }
 
-.btn-pink{
-  background:linear-gradient(45deg,#ff008c,#ff65b3);
-  color:white;
-  box-shadow:0 0 25px #ff008c;
+.btn-main{
+background:linear-gradient(135deg,#ff168c,#ff65b3);
+color:white;
+box-shadow:0 0 30px rgba(255,22,140,.65);
 }
 
-.btn-dark{
-  border:1px solid #555;
-  color:white;
+.btn-main:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:0 0 50px var(--pink);
 }
 
-/* 3D ORB */
-
-.hero-visual{
-  width:45%;
-  display:flex;
-  justify-content:center;
+.btn-outline{
+border:1px solid rgba(255,255,255,.35);
+color:white;
 }
 
-.orb{
-  width:350px;
-  height:350px;
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,#ffb0da,#ff008c 30%,#7a0045 60%,#0b0710 75%);
-  box-shadow:
-  inset -30px -30px 70px rgba(0,0,0,.8),
-  0 0 50px #ff008c,
-  0 0 120px rgba(255,0,140,.7);
-  animation:floatOrb 5s ease-in-out infinite;
-  position:relative;
+.btn-outline:hover{
+border-color:var(--pink);
+box-shadow:0 0 25px rgba(255,22,140,.4);
 }
 
-.orb::before{
-  content:"";
-  position:absolute;
-  width:420px;
-  height:120px;
-  border:3px solid #ff008c;
-  border-radius:50%;
-  left:-35px;
-  top:110px;
-  transform:rotate(-20deg);
-  box-shadow:0 0 25px #ff008c;
+/* ================= HERO PHOTO ================= */
+
+.hero-photo-area{
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:600px;
 }
 
-.orb::after{
-  content:"ROYAL GLOW";
-  position:absolute;
-  width:100%;
-  text-align:center;
-  top:45%;
-  font-weight:bold;
-  letter-spacing:4px;
-  text-shadow:0 0 15px #ff008c;
+.photo-ring{
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+border:3px solid var(--pink);
+box-shadow:
+0 0 25px var(--pink),
+0 0 80px rgba(255,22,140,.6),
+inset 0 0 30px rgba(255,22,140,.3);
+animation:rotateRing 10s linear infinite;
 }
 
-@keyframes floatOrb{
-  0%,100%{transform:translateY(0) rotate(0deg);}
-  50%{transform:translateY(-25px) rotate(8deg);}
+@keyframes rotateRing{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
-/* PARTICLES */
-
-.particle{
-  position:absolute;
-  width:8px;
-  height:8px;
-  background:#ff008c;
-  border-radius:50%;
-  box-shadow:0 0 15px #ff008c;
-  animation:floatParticle linear infinite;
+.photo-glow{
+position:absolute;
+width:420px;
+height:420px;
+background:var(--pink);
+filter:blur(120px);
+opacity:.35;
+border-radius:50%;
 }
 
-.p1{left:10%;animation-duration:8s;}
-.p2{left:30%;animation-duration:12s;}
-.p3{left:60%;animation-duration:9s;}
-.p4{left:85%;animation-duration:11s;}
-
-@keyframes floatParticle{
-  0%{transform:translateY(100vh);opacity:0;}
-  20%{opacity:1;}
-  100%{transform:translateY(-100px);opacity:0;}
+.hero-photo{
+position:relative;
+z-index:2;
+width:min(100%,480px);
+height:580px;
+object-fit:cover;
+object-position:center;
+border-radius:35px;
+filter:drop-shadow(0 0 35px rgba(255,22,140,.35));
+animation:floatPhoto 5s ease-in-out infinite;
 }
 
-/* FEATURES */
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  padding:30px 8%;
+@keyframes floatPhoto{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-15px);
+}
 }
 
-.feature{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  padding:25px;
-  border-radius:15px;
-  text-align:center;
+.floating-text{
+position:absolute;
+z-index:3;
+right:0;
+bottom:70px;
+font-size:30px;
+color:#fff;
+letter-spacing:4px;
+text-shadow:0 0 15px var(--pink);
 }
 
-/* SECTIONS */
+/* ================= STATS ================= */
 
-section{
-  padding:90px 8%;
-}
-
-.section-tag{
-  color:#ff4da6;
-  font-size:13px;
-  letter-spacing:3px;
-  margin-bottom:10px;
-}
-
-.section-title{
-  font-size:42px;
-  margin-bottom:15px;
-}
-
-.section-title span{
-  color:#ff4da6;
-  text-shadow:0 0 15px #ff008c;
-}
-
-.section-text{
-  color:#aaa;
-  max-width:650px;
-  line-height:1.7;
-  margin-bottom:40px;
-}
-
-/* SERVICES */
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:25px;
-}
-
-.service-card{
-  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;
-  padding:30px;
-  transition:.4s;
-}
-
-.service-card:hover{
-  transform:perspective(1000px) rotateX(8deg) rotateY(-8deg) translateY(-10px);
-  border-color:#ff008c;
-  box-shadow:0 15px 40px rgba(255,0,140,.25);
-}
-
-.service-icon{
-  font-size:45px;
-  margin-bottom:20px;
-}
-
-.service-card p{
-  color:#aaa;
-  margin-top:10px;
-}
-
-.price{
-  margin-top:20px;
-  color:#ff65b3;
-  font-size:22px;
-  font-weight:bold;
-}
-
-/* GALLERY */
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.gallery-box{
-  height:220px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#ff008c,#7a00ff,#111);
-  transition:.5s;
-}
-
-.gallery-box:hover{
-  transform:scale(1.05);
-  box-shadow:0 0 30px #ff008c;
-}
-
-/* ABOUT */
-
-.about-box{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-}
-
-.about-visual{
-  height:350px;
-  border-radius:25px;
-  background:radial-gradient(circle,#ff008c,#7a0045 45%,#111 70%);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:70px;
-}
-
-.stats{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
+.stats-box{
+margin:-20px 7% 70px;
+position:relative;
+z-index:5;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+background:rgba(15,7,20,.85);
+border:1px solid rgba(255,22,140,.35);
+border-radius:30px;
+backdrop-filter:blur(15px);
+overflow:hidden;
 }
 
 .stat{
-  background:rgba(255,255,255,.05);
-  padding:20px;
-  border-radius:15px;
+padding:30px;
+text-align:center;
+border-right:1px solid rgba(255,255,255,.1);
+}
+
+.stat:last-child{
+border-right:none;
 }
 
 .stat h3{
-  color:#ff4da6;
-  font-size:28px;
+font-size:32px;
+color:var(--pink2);
+margin-bottom:8px;
 }
 
-/* REVIEWS */
+.stat p{
+color:var(--muted);
+}
+
+/* ================= GENERAL ================= */
+
+section{
+padding:100px 7%;
+}
+
+.tag{
+color:#ff79bd;
+letter-spacing:3px;
+font-size:13px;
+margin-bottom:15px;
+}
+
+.section-title{
+font-size:clamp(36px,5vw,65px);
+margin-bottom:20px;
+}
+
+.section-text{
+color:var(--muted);
+font-size:17px;
+line-height:1.8;
+max-width:750px;
+margin-bottom:45px;
+}
+
+/* ================= OFFERS ================= */
+
+.offer-box{
+background:
+linear-gradient(135deg,rgba(255,22,140,.2),rgba(123,44,255,.12)),
+#110714;
+border:1px solid rgba(255,22,140,.5);
+border-radius:30px;
+padding:50px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+box-shadow:0 0 50px rgba(255,22,140,.1);
+}
+
+.offer-box h2{
+font-size:55px;
+}
+
+.offer-box h2 span{
+color:var(--pink2);
+text-shadow:0 0 25px var(--pink);
+}
+
+.offer-quote{
+font-size:28px;
+color:#ffc1df;
+font-style:italic;
+text-align:center;
+}
+
+/* ================= SERVICES ================= */
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.service-card{
+background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
+padding:30px;
+transition:.4s;
+position:relative;
+overflow:hidden;
+}
+
+.service-card::before{
+content:"";
+position:absolute;
+width:150px;
+height:150px;
+background:var(--pink);
+filter:blur(100px);
+opacity:0;
+transition:.4s;
+}
+
+.service-card:hover::before{
+opacity:.25;
+}
+
+.service-card:hover{
+transform:translateY(-12px) perspective(1000px) rotateX(4deg);
+border-color:var(--pink);
+box-shadow:0 20px 50px rgba(255,22,140,.2);
+}
+
+.service-icon{
+font-size:45px;
+margin-bottom:20px;
+}
+
+.service-card h3{
+font-size:23px;
+margin-bottom:12px;
+}
+
+.service-card p{
+color:var(--muted);
+line-height:1.6;
+}
+
+.price{
+font-size:25px;
+color:var(--pink2);
+margin-top:20px;
+font-weight:bold;
+}
+
+.book-small{
+display:inline-block;
+margin-top:20px;
+color:white;
+text-decoration:none;
+padding:10px 18px;
+border:1px solid var(--pink);
+border-radius:25px;
+}
+
+/* ================= WHY ================= */
+
+.why-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.why-card{
+background:#100714;
+padding:30px;
+border-radius:22px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.why-card h3{
+color:var(--pink2);
+margin:15px 0;
+}
+
+.why-card p{
+color:var(--muted);
+line-height:1.7;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.gallery-item{
+height:280px;
+border-radius:25px;
+overflow:hidden;
+position:relative;
+background:
+linear-gradient(135deg,#ff168c,#4a0b6f,#09030d);
+border:1px solid rgba(255,22,140,.4);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+transition:.4s;
+}
+
+.gallery-item:hover{
+transform:scale(1.04);
+box-shadow:0 0 35px rgba(255,22,140,.5);
+}
+
+/* ================= TEAM ================= */
+
+.team-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.team-card{
+background:#100714;
+border-radius:25px;
+padding:30px;
+text-align:center;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.team-avatar{
+width:100px;
+height:100px;
+border-radius:50%;
+margin:0 auto 20px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:45px;
+background:linear-gradient(135deg,var(--pink),var(--purple));
+box-shadow:0 0 25px rgba(255,22,140,.5);
+}
+
+.team-card p{
+color:var(--pink2);
+margin-top:8px;
+}
+
+/* ================= REVIEWS ================= */
 
 .review-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
 }
 
 .review{
-  background:rgba(255,255,255,.04);
-  padding:25px;
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,.08);
+background:#100714;
+padding:30px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
 }
 
 .stars{
-  color:#ffd700;
-  margin:10px 0;
+color:#ffd84d;
+font-size:20px;
+margin:15px 0;
 }
 
 .review p{
-  color:#aaa;
+color:var(--muted);
+line-height:1.7;
 }
 
-/* CONTACT */
+/* ================= BOOKING ================= */
 
-.contact-box{
-  text-align:center;
-  background:linear-gradient(135deg,rgba(255,0,140,.15),rgba(122,0,255,.15));
-  border:1px solid rgba(255,0,140,.3);
-  padding:60px 20px;
-  border-radius:30px;
+.booking-section{
+background:
+radial-gradient(circle at center,rgba(255,22,140,.18),transparent 45%);
 }
 
-/* BOOKING FORM */
+.booking-box{
+max-width:800px;
+margin:auto;
+padding:45px;
+border-radius:30px;
+background:rgba(15,7,20,.9);
+border:1px solid rgba(255,22,140,.4);
+}
 
-.booking-form{
-  max-width:500px;
-  margin:30px auto;
-  display:flex;
-  flex-direction:column;
-  gap:15px;
+.booking-box h2{
+text-align:center;
+font-size:42px;
+margin-bottom:10px;
+}
+
+.booking-box > p{
+text-align:center;
+color:var(--muted);
+margin-bottom:30px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
 }
 
 .booking-form input,
-.booking-form select{
-  padding:16px;
-  border-radius:12px;
-  border:1px solid #444;
-  background:#111;
-  color:white;
-  font-size:16px;
+.booking-form select,
+.booking-form textarea{
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid #3d263e;
+background:#0a050d;
+color:white;
+font-size:16px;
 }
 
-.booking-form input:focus,
-.booking-form select:focus{
-  outline:none;
-  border-color:#ff008c;
-  box-shadow:0 0 15px rgba(255,0,140,.5);
+.booking-form textarea{
+min-height:120px;
+resize:vertical;
 }
 
-/* WHATSAPP */
+.full{
+grid-column:1/-1;
+}
+
+.booking-form button{
+width:100%;
+margin-top:20px;
+border:none;
+cursor:pointer;
+font-size:16px;
+}
+
+/* ================= HOURS ================= */
+
+.info-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+.info-card{
+background:#100714;
+padding:35px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.info-card h3{
+font-size:28px;
+margin-bottom:20px;
+color:var(--pink2);
+}
+
+.info-card p{
+color:var(--muted);
+line-height:2;
+}
+
+/* ================= FAQ ================= */
+
+.faq{
+max-width:850px;
+margin:auto;
+}
+
+.faq-item{
+background:#100714;
+border:1px solid rgba(255,255,255,.08);
+padding:20px;
+border-radius:18px;
+margin-bottom:15px;
+}
+
+.faq-item summary{
+cursor:pointer;
+font-size:18px;
+}
+
+.faq-item p{
+color:var(--muted);
+padding-top:15px;
+line-height:1.7;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+text-align:center;
+}
+
+.contact h2{
+font-size:50px;
+margin-bottom:20px;
+}
+
+.contact p{
+color:var(--muted);
+margin-bottom:25px;
+}
+
+/* ================= WHATSAPP ================= */
 
 .whatsapp{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  width:60px;
-  height:60px;
-  background:#25D366;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:28px;
-  text-decoration:none;
-  color:white;
-  z-index:999;
-  box-shadow:0 0 20px #25D366;
+position:fixed;
+right:20px;
+bottom:25px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+text-decoration:none;
+color:white;
+z-index:999;
+box-shadow:0 0 30px rgba(37,211,102,.8);
+animation:whatsappPulse 2s infinite;
 }
 
-/* FOOTER */
+@keyframes whatsappPulse{
+0%,100%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.08);
+}
+}
+
+/* ================= BACK TOP ================= */
+
+#topBtn{
+position:fixed;
+left:20px;
+bottom:25px;
+width:50px;
+height:50px;
+border:none;
+border-radius:50%;
+background:#1a0b20;
+color:white;
+font-size:20px;
+display:none;
+cursor:pointer;
+border:1px solid var(--pink);
+z-index:998;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
-  text-align:center;
-  padding:30px;
-  border-top:1px solid rgba(255,255,255,.08);
-  color:#777;
+padding:50px 7%;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+color:#847789;
 }
 
-/* MOBILE */
-
-@media(max-width:800px){
-
-  .nav-links{
-    display:none;
-  }
-
-  nav{
-    padding:15px 5%;
-  }
-
-  .hero{
-    flex-direction:column;
-    text-align:center;
-    padding-top:130px;
-  }
-
-  .hero-content,
-  .hero-visual{
-    width:100%;
-  }
-
-  .hero h1{
-    font-size:45px;
-  }
-
-  .hero-visual{
-    margin-top:50px;
-  }
-
-  .orb{
-    width:260px;
-    height:260px;
-  }
-
-  .orb::before{
-    width:300px;
-    left:-20px;
-    top:80px;
-  }
-
-  .features{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .services-grid,
-  .review-grid{
-    grid-template-columns:1fr;
-  }
-
-  .gallery{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .gallery-box{
-    height:150px;
-  }
-
-  .about-box{
-    grid-template-columns:1fr;
-  }
-
-  .section-title{
-    font-size:32px;
-  }
+.socials{
+display:flex;
+justify-content:center;
+gap:15px;
+margin:20px 0;
 }
+
+.socials a{
+width:45px;
+height:45px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+color:white;
+border:1px solid rgba(255,255,255,.2);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+.nav-links{
+display:none;
+}
+
+.hero{
+grid-template-columns:1fr;
+text-align:center;
+padding-top:120px;
+}
+
+.hero p{
+margin-left:auto;
+margin-right:auto;
+}
+
+.hero-buttons{
+justify-content:center;
+}
+
+.hero-photo-area{
+min-height:500px;
+}
+
+.hero-photo{
+height:480px;
+}
+
+.photo-ring{
+width:350px;
+height:350px;
+}
+
+.stats-box{
+grid-template-columns:repeat(2,1fr);
+}
+
+.stat:nth-child(2){
+border-right:none;
+}
+
+.services-grid,
+.review-grid{
+grid-template-columns:1fr;
+}
+
+.why-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.gallery{
+grid-template-columns:repeat(2,1fr);
+}
+
+.team-grid{
+grid-template-columns:1fr;
+}
+
+.offer-box,
+.info-grid{
+grid-template-columns:1fr;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.full{
+grid-column:auto;
+}
+
+section{
+padding:70px 6%;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+}
+
+@media(max-width:500px){
+
+nav{
+padding:15px 5%;
+}
+
+.logo{
+font-size:20px;
+}
+
+.nav-btn{
+padding:10px 15px;
+font-size:13px;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.hero-photo{
+height:420px;
+}
+
+.photo-ring{
+width:290px;
+height:290px;
+}
+
+.stats-box{
+margin-left:5%;
+margin-right:5%;
+}
+
+.stat{
+padding:20px 10px;
+}
+
+.stat h3{
+font-size:25px;
+}
+
+.why-grid{
+grid-template-columns:1fr;
+}
+
+.gallery{
+grid-template-columns:1fr;
+}
+
+.gallery-item{
+height:220px;
+}
+
+.offer-box{
+padding:30px;
+}
+
+.offer-box h2{
+font-size:42px;
+}
+
+.booking-box{
+padding:25px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- LOADER -->
+
 <div id="loader">
-  <div class="loader-logo">
-    👑<br>ROYAL GLOW
-  </div>
+
+<div class="loader-box">
+
+<div class="loader-crown">👑</div>
+
+<div class="loader-text">
+ROYAL GLOW
 </div>
 
-<div class="particle p1"></div>
-<div class="particle p2"></div>
-<div class="particle p3"></div>
-<div class="particle p4"></div>
+</div>
+
+</div>
+
+
+<!-- NAVBAR -->
 
 <nav>
 
@@ -597,327 +954,637 @@ footer{
 </div>
 
 <div class="nav-links">
+
 <a href="#home">Home</a>
 <a href="#services">Services</a>
 <a href="#gallery">Gallery</a>
 <a href="#about">About</a>
-<a href="#reviews">Reviews</a>
+<a href="#booking">Booking</a>
+
 </div>
 
-<a href="#contact" class="nav-button">
-Book Now
+<a class="nav-btn"
+href="#booking">
+📅 Book Now
 </a>
 
 </nav>
 
+
+<!-- HERO -->
+
 <section class="hero" id="home">
 
-<div class="hero-content">
+<div>
 
-<p class="small-title">✨ WELCOME TO ROYAL GLOW SALON</p>
+<div class="badge">
+✨ WELCOME TO ROYAL GLOW
+</div>
 
 <h1>
-<span class="glow">BEAUTY</span>
+
+<span class="pink">BEAUTY</span>
+
 <br>
+
 IS A FORM OF
+
 <br>
-<span class="glow">CONFIDENCE</span>
+
+<span class="pink">CONFIDENCE</span>
+
 </h1>
 
 <p>
+
 Professional Hair, Beauty & Grooming Services.
+
 Experience premium beauty care and transform your look.
+
 </p>
 
 <div class="hero-buttons">
 
-<a href="https://wa.me/917077944098?text=Hello%20I%20want%20to%20book%20an%20appointment" class="btn btn-pink">
+<a
+href="https://wa.me/917077944098?text=Hello%20I%20want%20to%20book%20an%20appointment"
+class="btn btn-main">
+
 📅 Book Appointment
+
 </a>
 
-<a href="#services" class="btn btn-dark">
+<a href="#services"
+class="btn btn-outline">
+
 Explore Services →
+
 </a>
 
 </div>
 
 </div>
 
-<div class="hero-visual">
-<div class="orb"></div>
+
+<div class="hero-photo-area">
+
+<div class="photo-glow"></div>
+
+<div class="photo-ring"></div>
+
+<img
+src="hero.jpg"
+class="hero-photo"
+alt="Royal Glow">
+
+<div class="floating-text">
+ROYAL GLOW
+</div>
+
 </div>
 
 </section>
 
-<div class="features">
 
-<div class="feature">
-<h3>✂️</h3>
-<p>Expert Stylists</p>
-</div>
+<!-- STATS -->
 
-<div class="feature">
-<h3>💎</h3>
-<p>Premium Products</p>
-</div>
+<div class="stats-box">
 
-<div class="feature">
-<h3>✨</h3>
-<p>Modern Beauty Care</p>
-</div>
+<div class="stat">
 
-<div class="feature">
-<h3>❤️</h3>
-<p>Happy Customers</p>
-</div>
+<h3>1000+</h3>
+
+<p>Happy Clients</p>
 
 </div>
+
+<div class="stat">
+
+<h3>5+</h3>
+
+<p>Years Experience</p>
+
+</div>
+
+<div class="stat">
+
+<h3>20+</h3>
+
+<p>Beauty Experts</p>
+
+</div>
+
+<div class="stat">
+
+<h3>4.9★</h3>
+
+<p>Customer Rating</p>
+
+</div>
+
+</div>
+
+
+<!-- OFFER -->
+
+<section>
+
+<div class="offer-box">
+
+<div>
+
+<div class="tag">
+🔥 SPECIAL OFFER
+</div>
+
+<h2>
+
+Get
+
+<span>20% OFF</span>
+
+<br>
+
+On Your First Visit
+
+</h2>
+
+<br>
+
+<a
+href="https://wa.me/917077944098?text=Hello%20I%20want%20to%20claim%20the%2020%25%20offer"
+class="btn btn-main">
+
+Claim Offer →
+
+</a>
+
+</div>
+
+<div class="offer-quote">
+
+“Self Care Is Not A Luxury.
+
+It's A Necessity.”
+
+<br><br>
+
+💗
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
 
 <section id="services">
 
-<p class="section-tag">OUR SERVICES</p>
+<div class="tag">
+OUR SERVICES
+</div>
 
 <h2 class="section-title">
-Beauty Care For <span>Everyone</span>
+
+Beauty Care For
+
+<span class="pink">Everyone</span>
+
 </h2>
 
 <p class="section-text">
-Discover our professional salon services.
+
+Professional salon services designed to make you look and feel confident.
+
 </p>
+
 
 <div class="services-grid">
 
 <div class="service-card">
-<div class="service-icon">💇</div>
-<h3>Hair Styling</h3>
-<p>Professional haircut and styling.</p>
-<div class="price">From ₹299</div>
+
+<div class="service-icon">
+✂️
 </div>
 
+<h3>Hair Cut & Styling</h3>
+
+<p>
+Trendy haircut and professional styling.
+</p>
+
+<div class="price">
+From ₹299
+</div>
+
+<a class="book-small"
+href="https://wa.me/917077944098?text=Hello%20I%20want%20Hair%20Cut%20booking">
+
+Book Now →
+
+</a>
+
+</div>
+
+
 <div class="service-card">
-<div class="service-icon">✨</div>
+
+<div class="service-icon">
+✨
+</div>
+
 <h3>Facial Treatment</h3>
-<p>Professional skin care treatment.</p>
-<div class="price">From ₹999</div>
+
+<p>
+Professional skincare and facial treatment.
+</p>
+
+<div class="price">
+From ₹999
 </div>
 
+<a class="book-small"
+href="https://wa.me/917077944098?text=Hello%20I%20want%20Facial%20booking">
+
+Book Now →
+
+</a>
+
+</div>
+
+
 <div class="service-card">
-<div class="service-icon">💄</div>
+
+<div class="service-icon">
+👰
+</div>
+
 <h3>Bridal Makeup</h3>
-<p>Premium bridal makeup service.</p>
-<div class="price">From ₹4999</div>
+
+<p>
+Premium bridal makeup for your special day.
+</p>
+
+<div class="price">
+From ₹4,999
 </div>
 
-<div class="service-card">
-<div class="service-icon">💅</div>
-<h3>Manicure</h3>
-<p>Beautiful nail care service.</p>
-<div class="price">From ₹599</div>
+<a class="book-small"
+href="https://wa.me/917077944098?text=Hello%20I%20want%20Bridal%20Makeup%20booking">
+
+Book Now →
+
+</a>
+
 </div>
 
+
 <div class="service-card">
-<div class="service-icon">💆</div>
+
+<div class="service-icon">
+💅
+</div>
+
+<h3>Manicure & Pedicure</h3>
+
+<p>
+Relax and refresh your hands and feet.
+</p>
+
+<div class="price">
+From ₹599
+</div>
+
+<a class="book-small"
+href="https://wa.me/917077944098?text=Hello%20I%20want%20Manicure%20booking">
+
+Book Now →
+
+</a>
+
+</div>
+
+
+<div class="service-card">
+
+<div class="service-icon">
+💆
+</div>
+
 <h3>Hair Spa</h3>
-<p>Relaxing hair treatment.</p>
-<div class="price">From ₹799</div>
+
+<p>
+Premium hair care and relaxing treatment.
+</p>
+
+<div class="price">
+From ₹799
 </div>
+
+<a class="book-small"
+href="https://wa.me/917077944098?text=Hello%20I%20want%20Hair%20Spa%20booking">
+
+Book Now →
+
+</a>
+
+</div>
+
 
 <div class="service-card">
-<div class="service-icon">👑</div>
+
+<div class="service-icon">
+👑
+</div>
+
 <h3>Premium Package</h3>
-<p>Complete luxury beauty experience.</p>
-<div class="price">From ₹2999</div>
+
+<p>
+Complete luxury beauty experience.
+</p>
+
+<div class="price">
+From ₹2,999
 </div>
 
+<a class="book-small"
+href="https://wa.me/917077944098?text=Hello%20I%20want%20Premium%20Package%20booking">
+
+Book Now →
+
+</a>
+
 </div>
-</section>
-
-<section id="gallery">
-
-<p class="section-tag">OUR GALLERY</p>
-
-<h2 class="section-title">
-Real <span>Transformations</span>
-</h2>
-
-<div class="gallery">
-
-<div class="gallery-box"></div>
-<div class="gallery-box"></div>
-<div class="gallery-box"></div>
-<div class="gallery-box"></div>
 
 </div>
 
 </section>
+
+
+<!-- WHY CHOOSE US -->
 
 <section id="about">
 
-<div class="about-box">
-
-<div class="about-visual">✨</div>
-
-<div>
-
-<p class="section-tag">ABOUT US</p>
+<div class="tag">
+WHY CHOOSE US
+</div>
 
 <h2 class="section-title">
-Experience The <span>Art Of Beauty</span>
+
+Premium Experience.
+
+<span class="pink">Beautiful Results.</span>
+
+</h2>
+
+<div class="why-grid">
+
+<div class="why-card">
+
+<div class="service-icon">💎</div>
+
+<h3>Premium Products</h3>
+
+<p>
+Quality products for professional results.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="service-icon">✂️</div>
+
+<h3>Expert Stylists</h3>
+
+<p>
+Professional and experienced beauty experts.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="service-icon">✨</div>
+
+<h3>Modern Style</h3>
+
+<p>
+Latest beauty and grooming trends.
+</p>
+
+</div>
+
+
+<div class="why-card">
+
+<div class="service-icon">❤️</div>
+
+<h3>Customer Care</h3>
+
+<p>
+Your comfort and satisfaction matter to us.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<div class="tag">
+OUR GALLERY
+</div>
+
+<h2 class="section-title">
+
+Our
+
+<span class="pink">Transformations</span>
+
 </h2>
 
 <p class="section-text">
-Professional beauty, hair and grooming services designed to make you feel confident.
+
+Real salon photos can be added here later.
+
 </p>
 
-<div class="stats">
+<div class="gallery">
 
-<div class="stat">
-<h3>5+</h3>
-<p>Years Experience</p>
-</div>
-
-<div class="stat">
-<h3>1000+</h3>
-<p>Happy Clients</p>
+<div class="gallery-item">
+Hair Transformation
 </div>
 
-<div class="stat">
-<h3>20+</h3>
-<p>Beauty Experts</p>
+<div class="gallery-item">
+Facial Care
+</div>
+
+<div class="gallery-item">
+Bridal Makeup
+</div>
+
+<div class="gallery-item">
+Nail Art
 </div>
 
 </div>
 
-</div>
-</div>
 </section>
 
-<section id="reviews">
 
-<p class="section-tag">CLIENT REVIEWS</p>
+<!-- TEAM -->
+
+<section>
+
+<div class="tag">
+OUR TEAM
+</div>
 
 <h2 class="section-title">
-What Our <span>Customers Say</span>
+
+Meet Our
+
+<span class="pink">Experts</span>
+
+</h2>
+
+<div class="team-grid">
+
+<div class="team-card">
+
+<div class="team-avatar">
+✂️
+</div>
+
+<h3>Hair Expert</h3>
+
+<p>Professional Styling</p>
+
+</div>
+
+<div class="team-card">
+
+<div class="team-avatar">
+💄
+</div>
+
+<h3>Makeup Artist</h3>
+
+<p>Beauty Specialist</p>
+
+</div>
+
+<div class="team-card">
+
+<div class="team-avatar">
+✨
+</div>
+
+<h3>Beauty Expert</h3>
+
+<p>Premium Skincare</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section>
+
+<div class="tag">
+CLIENT REVIEWS
+</div>
+
+<h2 class="section-title">
+
+What Our
+
+<span class="pink">Clients Say</span>
+
 </h2>
 
 <div class="review-grid">
 
 <div class="review">
-<h3>Priya Sharma</h3>
-<div class="stars">★★★★★</div>
-<p>Amazing salon experience and professional staff.</p>
+
+<h3>Customer Review</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Add a real customer review here.
+</p>
+
 </div>
 
 <div class="review">
-<h3>Sneha Patel</h3>
-<div class="stars">★★★★★</div>
-<p>Highly recommended beauty services.</p>
+
+<h3>Customer Review</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Add another genuine client review here.
+</p>
+
 </div>
 
 <div class="review">
-<h3>Rohit Mehta</h3>
-<div class="stars">★★★★★</div>
-<p>Excellent grooming service.</p>
+
+<h3>Customer Review</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Real reviews increase customer trust.
+</p>
+
 </div>
 
 </div>
+
 </section>
 
-<section id="contact">
 
-<div class="contact-box">
+<!-- BOOKING -->
 
-<h2 class="section-title">
-Book Your <span>Appointment</span>
+<section
+class="booking-section"
+id="booking">
+
+<div class="booking-box">
+
+<h2>
+
+Book Your
+
+<span class="pink">Appointment</span>
+
 </h2>
 
-<form class="booking-form" id="bookingForm">
-
-<input type="text" id="name" placeholder="Your Name" required>
-
-<input type="tel" id="phone" placeholder="Phone Number" required>
-
-<select id="service">
-<option value="">Select Service</option>
-<option>Hair Styling</option>
-<option>Facial</option>
-<option>Hair Spa</option>
-<option>Bridal Makeup</option>
-<option>Manicure</option>
-</select>
-
-<button type="submit" class="btn btn-pink">
-Book On WhatsApp
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-<a
-href="https://wa.me/917077944098?text=Hello%20I%20want%20to%20book%20an%20appointment"
-class="whatsapp"
->
-💬
-</a>
-
-<footer>
-
-<p>© 2026 Royal Glow Salon</p>
-
-<p>Beauty • Style • Confidence</p>
-
-</footer>
-
-<script>
-
-/* LOADER */
-
-window.addEventListener("load",function(){
-
-setTimeout(function(){
-
-const loader=document.getElementById("loader");
-
-loader.style.opacity="0";
-
-setTimeout(function(){
-
-loader.style.display="none";
-
-},1000);
-
-},1200);
-
-});
+<p>
+Fill the form and booking details will open in WhatsApp.
+</p>
 
 
-/* WHATSAPP BOOKING FORM */
-
-document.getElementById("bookingForm").addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const name=document.getElementById("name").value;
-const phone=document.getElementById("phone").value;
-const service=document.getElementById("service").value;
-
-const message=
-"Hello! I want to book an appointment.%0A%0A"+
-"Name: "+name+"%0A"+
-"Phone: "+phone+"%0A"+
-"Service: "+service;
-
-window.open(
-"https://wa.me/917077944098?text="+message,
-"_blank"
-);
-
-});
-
-</script>
-
-</body>
-</html>
+<form
+  
