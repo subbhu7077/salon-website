@@ -1,71 +1,709 @@
-<!-- LOADER START -->
-<div id="loader">
-  <div class="loader-content">
-    <div class="crown">👑</div>
-    <div class="loader-text">ROYAL GLOW</div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Royal Glow Salon</title>
 
 <style>
-#loader{
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#08000d;
+  color:white;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body:before{
+  content:"";
   position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  background:#09000d;
-  z-index:999999;
+  width:500px;
+  height:500px;
+  background:#ff008c;
+  filter:blur(180px);
+  opacity:.12;
+  top:200px;
+  left:-200px;
+  z-index:-1;
+}
+
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(8,0,13,.95);
+  border-bottom:1px solid #ff1493;
+  padding:15px 5%;
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-  animation:hideLoader 0.5s ease forwards;
-  animation-delay:2.5s;
 }
 
-.loader-content{
-  text-align:center;
-  animation:loaderPulse 1.2s ease-in-out infinite;
-}
-
-.crown{
-  font-size:70px;
-  filter:drop-shadow(0 0 20px #ff008c);
-}
-
-.loader-text{
-  margin-top:15px;
-  color:#ff4fa3;
-  font-size:20px;
-  letter-spacing:8px;
+.logo{
+  color:#ff3ca6;
+  font-size:22px;
   font-weight:bold;
   text-shadow:0 0 15px #ff008c;
 }
 
-@keyframes loaderPulse{
-  0%,100%{
-    transform:scale(1);
-    opacity:1;
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+  font-size:14px;
+}
+
+.book-top{
+  background:#ff008c;
+  padding:10px 18px;
+  border-radius:30px;
+  box-shadow:0 0 20px #ff008c;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding:70px 8%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-box{
+  max-width:1200px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.small{
+  color:#ff69b4;
+  letter-spacing:3px;
+  margin-bottom:15px;
+}
+
+h1{
+  font-size:75px;
+  line-height:1;
+  margin-bottom:25px;
+}
+
+.pink{
+  color:#ff008c;
+  text-shadow:
+  4px 4px 0 #7a0044,
+  0 0 20px #ff008c,
+  0 0 50px #ff008c;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    transform:translateY(0);
+    text-shadow:4px 4px 0 #7a0044,0 0 15px #ff008c;
   }
-  50%{
-    transform:scale(1.08);
-    opacity:.7;
+
+  to{
+    transform:translateY(-5px);
+    text-shadow:6px 6px 0 #7a0044,0 0 40px #ff008c;
   }
 }
 
-@keyframes hideLoader{
-  0%{
-    opacity:1;
-    visibility:visible;
-  }
-  99%{
-    opacity:0;
-    visibility:visible;
-  }
-  100%{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
+.hero p{
+  color:#ddd;
+  line-height:1.8;
+  margin-bottom:25px;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 25px;
+  border-radius:30px;
+  text-decoration:none;
+  margin-right:10px;
+  cursor:pointer;
+  border:none;
+  font-size:15px;
+}
+
+.primary{
+  background:#ff008c;
+  color:white;
+  box-shadow:0 0 25px #ff008c;
+}
+
+.secondary{
+  border:1px solid #ff69b4;
+  background:transparent;
+  color:white;
+}
+
+/* PHOTO */
+.photo-box{
+  position:relative;
+  display:flex;
+  justify-content:center;
+}
+
+.photo-box img{
+  width:330px;
+  max-width:100%;
+  border-radius:30px;
+  border:3px solid #ff008c;
+  box-shadow:0 0 40px #ff008c;
+  position:relative;
+  z-index:2;
+}
+
+.photo-box:before{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  border:3px solid #ff008c;
+  border-radius:50%;
+  box-shadow:0 0 40px #ff008c;
+  animation:rotate 8s linear infinite;
+}
+
+@keyframes rotate{
+  from{transform:rotate(0)}
+  to{transform:rotate(360deg)}
+}
+
+/* SECTIONS */
+section{
+  padding:70px 8%;
+}
+
+.title{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:40px;
+}
+
+.title span{
+  color:#ff008c;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:#13091a;
+  border:1px solid #ff1493;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 0 15px rgba(255,0,140,.2);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px #ff008c;
+}
+
+.card h3{
+  color:#ff69b4;
+  margin-bottom:15px;
+}
+
+.price{
+  color:#ff008c;
+  font-size:22px;
+  margin-top:15px;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  text-align:center;
+}
+
+.stat{
+  border:1px solid #ff008c;
+  padding:25px;
+  border-radius:15px;
+}
+
+.stat h2{
+  color:#ff008c;
+  font-size:30px;
+}
+
+/* ABOUT */
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.about img{
+  width:100%;
+  border-radius:25px;
+  border:2px solid #ff008c;
+  box-shadow:0 0 30px #ff008c;
+}
+
+/* REVIEWS */
+.review{
+  background:#13091a;
+  padding:20px;
+  border-radius:15px;
+  border:1px solid #ff1493;
+}
+
+.stars{
+  color:#ffd700;
+}
+
+/* BOOKING */
+.booking{
+  background:#140817;
+  border:1px solid #ff008c;
+  border-radius:25px;
+  padding:30px;
+}
+
+form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #ff1493;
+  background:#0b0410;
+  color:white;
+}
+
+textarea{
+  grid-column:span 2;
+  min-height:100px;
+}
+
+.submit{
+  grid-column:span 2;
+  background:#ff008c;
+  color:white;
+  border:none;
+  padding:16px;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:17px;
+  box-shadow:0 0 25px #ff008c;
+}
+
+/* WHATSAPP */
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#25d366;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none;
+  font-size:28px;
+  box-shadow:0 0 25px #25d366;
+  z-index:1000;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid #ff008c;
+  color:#aaa;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+  nav a{
     display:none;
+  }
+
+  .hero{
+    padding-top:40px;
+  }
+
+  .hero-box{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  h1{
+    font-size:52px;
+  }
+
+  .photo-box{
+    order:-1;
+  }
+
+  .photo-box img{
+    width:260px;
+  }
+
+  .photo-box:before{
+    width:280px;
+    height:280px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  form{
+    grid-template-columns:1fr;
+  }
+
+  textarea,.submit{
+    grid-column:span 1;
+  }
+
+  section{
+    padding:50px 6%;
   }
 }
 </style>
-<!-- LOADER END -->
+</head>
+
+<body>
+
+<nav>
+<div class="logo">👑 Royal Glow</div>
+
+<div>
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#reviews">Reviews</a>
+<a href="#contact">Contact</a>
+<a class="book-top" href="#booking">Book Now</a>
+</div>
+</nav>
+
+<section class="hero" id="home">
+
+<div class="hero-box">
+
+<div>
+<div class="small">✨ PREMIUM BEAUTY EXPERIENCE</div>
+
+<h1>
+BEAUTY<br>
+IS<br>
+<span class="pink">CONFIDENCE</span>
+</h1>
+
+<p>
+Professional hair, beauty and grooming services designed
+to help you look stylish and feel confident.
+</p>
+
+<a class="btn primary" href="https://wa.me/917077944098">
+📅 Book Appointment
+</a>
+
+<a class="btn secondary" href="#services">
+Explore Services →
+</a>
+</div>
+
+<div class="photo-box">
+<img src="IMG-2100.jpg" alt="Royal Glow">
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="stats">
+
+<div class="stat">
+<h2>100+</h2>
+<p>Happy Clients</p>
+</div>
+
+<div class="stat">
+<h2>5+</h2>
+<p>Years Experience</p>
+</div>
+
+<div class="stat">
+<h2>20+</h2>
+<p>Beauty Experts</p>
+</div>
+
+<div class="stat">
+<h2>4.9★</h2>
+<p>Customer Rating</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<h2 class="title">
+Our <span>Services</span>
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>💇 Hair Cut & Styling</h3>
+<p>Professional haircut and stylish grooming.</p>
+<div class="price">From ₹299</div>
+</div>
+
+<div class="card">
+<h3>✨ Facial Treatment</h3>
+<p>Premium skin care and facial treatment.</p>
+<div class="price">From ₹999</div>
+</div>
+
+<div class="card">
+<h3>💅 Manicure & Pedicure</h3>
+<p>Beautiful hands and professional nail care.</p>
+<div class="price">From ₹599</div>
+</div>
+
+<div class="card">
+<h3>💄 Bridal Makeup</h3>
+<p>Premium bridal beauty experience.</p>
+<div class="price">From ₹4,999</div>
+</div>
+
+<div class="card">
+<h3>🧖 Hair Spa</h3>
+<p>Relaxing hair treatment and care.</p>
+<div class="price">From ₹799</div>
+</div>
+
+<div class="card">
+<h3>✂ Grooming Package</h3>
+<p>Complete grooming experience.</p>
+<div class="price">From ₹1,999</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="about">
+
+<img src="IMG-2100.jpg" alt="Royal Glow">
+
+<div>
+
+<h2 class="title">
+More Than A Salon,<br>
+<span>A Beauty Experience.</span>
+</h2>
+
+<p>
+At Royal Glow, we provide professional hair,
+beauty and grooming services designed for
+your confidence and style.
+</p>
+
+<br>
+
+<a class="btn primary" href="https://wa.me/917077944098">
+Contact on WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="reviews">
+
+<h2 class="title">
+What Our <span>Clients Say</span>
+</h2>
+
+<div class="cards">
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<br>
+Amazing service and professional experience.
+<br><br>
+<strong>— Priya S.</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<br>
+Loved the styling and premium service.
+<br><br>
+<strong>— Neha K.</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<br>
+Best salon experience. Highly recommended.
+<br><br>
+<strong>— Riya M.</strong>
+</div>
+
+</div>
+
+</section>
+
+<section id="booking">
+
+<div class="booking">
+
+<h2 class="title">
+Your Beauty <span>Journey Starts Here</span>
+</h2>
+
+<form onsubmit="sendWhatsApp(); return false;">
+
+<input id="name" placeholder="Your Name" required>
+
+<input id="phone" placeholder="Phone Number" required>
+
+<select id="service">
+<option>Hair Cut</option>
+<option>Facial</option>
+<option>Hair Spa</option>
+<option>Bridal Makeup</option>
+<option>Grooming Package</option>
+</select>
+
+<input id="date" type="date" required>
+
+<textarea id="message" placeholder="Any special message?"></textarea>
+
+<button class="submit" type="submit">
+Send Booking on WhatsApp
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="title">
+Let's <span>Stay Connected</span>
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>📞 Call Now</h3>
+<p>7077944098</p>
+</div>
+
+<div class="card">
+<h3>💬 WhatsApp</h3>
+<p>Chat with us anytime</p>
+</div>
+
+<div class="card">
+<h3>📍 Visit Our Salon</h3>
+<p>Location coming soon</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+👑 Royal Glow<br><br>
+Beauty • Style • Confidence<br><br>
+© 2026 Royal Glow
+</footer>
+
+<a class="whatsapp" href="https://wa.me/917077944098">
+💬
+</a>
+
+<script>
+function sendWhatsApp(){
+
+const name =
+document.getElementById("name").value;
+
+const phone =
+document.getElementById("phone").value;
+
+const service =
+document.getElementById("service").value;
+
+const date =
+document.getElementById("date").value;
+
+const message =
+document.getElementById("message").value;
+
+const text =
+"Hello Royal Glow!%0A%0A" +
+"Name: " + name + "%0A" +
+"Phone: " + phone + "%0A" +
+"Service: " + service + "%0A" +
+"Preferred Date: " + date + "%0A" +
+"Message: " + message;
+
+window.open(
+"https://wa.me/917077944098?text=" + text,
+"_blank"
+);
+
+}
+</script>
+
+</body>
+</html>
